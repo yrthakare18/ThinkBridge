@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Fundamentals: Signup Form Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <h1 id="page-title" class="title primary-title">CSS Fundamentals Demo</h1>
+        <p class="subtitle">Signup Form with Selectors, Box Model & Cascade</p>
+    </header>
+
+    <main class="form-container">
+        <section class="demo-section" id="signup-section">
+            <h2 class="section-title">Create Your Account</h2>
+            <p class="form-description">This form demonstrates CSS fundamentals through practical examples.</p>
+            
+            <form class="signup-form" novalidate aria-labelledby="signup-section">
+                <fieldset class="personal-info">
+                    <legend class="fieldset-legend">Personal Information</legend>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" class="required-field">First Name</label>
+                            <input 
+                                type="text" 
+                                id="firstName" 
+                                name="firstName" 
+                                class="text-input highlight-input"
+                                required 
+                                aria-required="true"
+                                placeholder="Enter your first name"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName" class="required-field warning-label">Last Name</label>
+                            <input 
+                                type="text" 
+                                id="lastName" 
+                                name="lastName" 
+                                class="text-input"
+                                required 
+                                aria-required="true"
+                                placeholder="Enter your last name"
+                            >
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="required-field">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="email-input special-input"
+                            required 
+                            aria-required="true"
+                            placeholder="your.email@example.com"
+                        >
+                    </div>
+                </fieldset>
+                
+                <fieldset class="account-security">
+                    <legend class="fieldset-legend">Account Security</legend>
+                    
+                    <div class="form-group">
+                        <label for="password" class="required-field">Password</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="password-input"
+                            required 
+                            aria-required="true"
+                            placeholder="Create a strong password"
+                            minlength="8"
+                        >
+                        <div class="input-hint">
+                            <p class="hint-text">Must be at least 8 characters</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword" class="required-field">Confirm Password</label>
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirmPassword" 
+                            class="password-input"
+                            required 
+                            aria-required="true"
+                            placeholder="Confirm your password"
+                        >
+                    </div>
+                </fieldset>
+                
+                <fieldset class="additional-info">
+                    <legend class="fieldset-legend">Additional Information</legend>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="birthDate">Date of Birth</label>
+                            <input 
+                                type="date" 
+                                id="birthDate" 
+                                name="birthDate" 
+                                class="date-input"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <select id="country" name="country" class="select-input">
+                                <option value="">Select a country</option>
+                                <option value="US">United States</option>
+                                <option value="CA">Canada</option>
+                                <option value="GB">United Kingdom</option>
+                                <option value="IN">India</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <div class="checkbox-section">
+                    <div class="checkbox-group newsletter-group">
+                        <input 
+                            type="checkbox" 
+                            id="newsletter" 
+                            name="newsletter"
+                            class="checkbox-input"
+                        >
+                        <label for="newsletter" class="checkbox-label">
+                            Subscribe to newsletter
+                        </label>
+                    </div>
+                    
+                    <div class="checkbox-group terms-group">
+                        <input 
+                            type="checkbox" 
+                            id="terms" 
+                            name="terms" 
+                            class="checkbox-input required-checkbox"
+                            required 
+                            aria-required="true"
+                        >
+                        <label for="terms" class="checkbox-label required-field">
+                            I agree to the Terms of Service
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="button-section">
+                    <button type="submit" class="submit-button primary-button" id="signup-submit">
+                        Create Account
+                    </button>
+                    <button type="reset" class="reset-button secondary-button">
+                        Clear Form
+                    </button>
+                </div>
+            </form>
+        </section>
+        
+        <aside class="demo-info">
+            <h3 class="info-title">CSS Concepts Demonstrated</h3>
+            <ul class="concept-list">
+                <li class="concept-item">Element selectors (input, label, button)</li>
+                <li class="concept-item highlight-item">Class selectors (.form-group, .text-input)</li>
+                <li class="concept-item">ID selectors (#firstName, #signup-submit)</li>
+                <li class="concept-item warning-item">Attribute selectors ([type="email"])</li>
+                <li class="concept-item">Pseudo-classes (:focus, :hover, :required)</li>
+            </ul>
+            
+            <div class="box-model-demo">
+                <h4>Box Model Examples</h4>
+                <div class="demo-box default-box">Default Box</div>
+                <div class="demo-box content-box">Content Box</div>
+                <div class="demo-box border-box">Border Box</div>
+            </div>
+        </aside>
+    </main>
+    
+    <footer class="site-footer">
+        <p>&copy; 2025 CSS Fundamentals Demo - Open DevTools to inspect the box model!</p>
+    </footer>
+</body>
+</html>

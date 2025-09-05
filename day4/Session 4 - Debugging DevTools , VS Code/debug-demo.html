@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debugging Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: #f5f5f5;
+    }
+    h1 { color: #333; margin-bottom: 20px; }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #007bff;  
+      color: white;
+      transition: background 0.3s;
+    }
+    button:hover { background: #0056b3; }
+    #output { margin-top: 30px; font-size: 18px; font-weight: bold; color: #222; }
+  </style>
+</head>
+<body>
+  <h1 id="output">Debug Example</h1>
+  <button id="calcBtn">Calculate</button>
+
+  <!-- External JS -->
+  <script src="debug-demo.js"></script>
+</body>
+</html>

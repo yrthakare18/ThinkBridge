@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yash Thakare — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+  <!-- ✅ Header upgraded with Flexbox + Hamburger -->
+  <header>
+    <div class="header-flex">
+      <h1 class="site-title">Yash Thakare</h1>
+      <div class="tagline">Aspiring Software Engineer | Web & AI Enthusiast</div>
+
+      <!-- Hamburger toggle (hidden on desktop) -->
+      <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="hamburger">☰</label>
+
+      <nav aria-label="Primary" class="main-nav">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <section id="about" class="card">
+        <h2>About Me</h2>
+        <p><strong>Yash</strong> — Computer Engineering student. I build web apps and AI projects, enjoy solving problems, and work with Java, MySQL, and front-end technologies. Passionate about creating efficient and scalable solutions.</p>
+      </section>
+
+      <!-- ✅ Projects now flexbox card grid -->
+      <section id="projects" class="card">
+        <h2>Projects</h2>
+        <div class="cards">
+          <div class="project-card">
+            <h3>AI-Driven Workout Guide</h3>
+            <ul class="simple">
+              <li>Computer vision using MediaPipe + OpenCV for pose detection.</li>
+              <li>Automated repetition counting and feedback loop.</li>
+              <li>Designed for scalable web/mobile deployment.</li>
+            </ul>
+          </div>
+
+          <div class="project-card">
+            <h3>MessMate: Mess Menu Portal</h3>
+            <ul class="simple">
+              <li>Web portal for mess owners to add menus (Java + MySQL backend).</li>
+              <li>Students can view and compare menus in real-time.</li>
+            </ul>
+          </div>
+
+          <div class="project-card">
+            <h3>Wi-Fi Sharing System</h3>
+            <ul class="simple">
+              <li>On-demand Wi-Fi rental with hourly payments.</li>
+              <li>Secure authentication + provider-user connection model.</li>
+            </ul>
+          </div>
+
+          <div class="project-card">
+            <h3>Portfolio Website</h3>
+            <ul class="simple">
+              <li>Responsive portfolio built with Flexbox.</li>
+              <li>Features accessibility and modern UI design.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="card">
+        <h2>Skills</h2>
+        <div class="meta">
+          <span class="badge">HTML</span>
+          <span class="badge">CSS</span>
+          <span class="badge">JavaScript</span>
+          <span class="badge">Java</span>
+          <span class="badge">MySQL</span>
+          <span class="badge">Git & GitHub</span>
+          <span class="badge">Problem Solving</span>
+        </div>
+      </section>
+
+      <section id="contact" class="card contact-inline">
+        <h2>Contact</h2>
+        <div class="contact-card">
+          <div><strong>Email:</strong> <a href="mailto:yrthakare07@gmail.com">yrthakare07@gmail.com</a></div>
+          <div><strong>Phone:</strong> 9763898454</div>
+        </div>
+      </section>
+    </article>
+
+    <aside>
+      <div class="aside-panel">
+        <h2>Certifications</h2>
+        <div class="cert-list">
+          <div class="cert" title="Microsoft Azure Fundamentals">
+            <img src="https://img.icons8.com/color/48/000000/microsoft.png" alt="Microsoft logo">
+            <span>Microsoft Azure Fundamentals</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="aside-panel">
+        <h2>Links</h2>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/yash-thakare18" target="_blank">
+            <img src="https://img.icons8.com/ios-filled/50/0077ff/linkedin.png" alt="LinkedIn"> LinkedIn
+          </a>
+          <a href="https://github.com/yrthakare18" target="_blank">
+            <img src="https://img.icons8.com/ios-glyphs/50/000000/github.png" alt="GitHub"> GitHub
+          </a>
+        <!-- <a href="Yash_Thakare_9763898454.pdf" target="_blank">
+            <img src="https://img.icons8.com/ios-filled/50/0077ff/open-resume.png" alt="Resume"> Resume
+          </a>--> 
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    &copy; 2025 Yash Thakare — Portfolio
+  </footer>
+
+</body>
+</html>

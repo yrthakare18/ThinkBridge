@@ -1,0 +1,110 @@
+:root {
+  --accent: #0077ffce;
+  --accent-2: #00c4ff;
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --radius: 10px;
+  --shadow: rgba(0,0,0,0.08);
+}
+
+*{ box-sizing:border-box; margin:0; padding:0;}
+body{
+  font-family:"Poppins",sans-serif;
+  background:var(--bg);
+  color:#222;
+  line-height:1.6;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+
+/* === Header (Flexbox + Hamburger) === */
+header{
+  background: linear-gradient(135deg,var(--accent),var(--accent-2));
+  color:#fff;
+  padding:20px;
+  border-radius:0 0 var(--radius) var(--radius);
+  box-shadow:0 5px 15px var(--shadow);
+}
+.header-flex{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+.site-title{ font-size:1.8rem; font-weight:700;}
+.tagline{ font-size:.95rem; color:#e0e0e0; }
+
+/* ✅ nav flex */
+.main-nav ul{ list-style:none; display:flex; gap:20px; }
+.main-nav a{ text-decoration:none; color:#fff; font-weight:500; padding:6px 12px; border-radius:6px; transition:.3s; }
+.main-nav a:hover{ background:rgba(255,255,255,0.2); color:#111; }
+
+/* ✅ Hamburger menu */
+#menu-toggle{ display:none; }
+.hamburger{ display:none; font-size:1.8rem; cursor:pointer; margin-left:auto; }
+
+/* Layout */
+main{
+  display:grid;
+  grid-template-columns: 1fr 300px;
+  gap:30px;
+  width:90%;
+  max-width:1200px;
+  margin:40px auto;
+  flex:1;
+}
+article{ display:flex; flex-direction:column; gap:30px; }
+
+section.card{
+  background:var(--card);
+  padding:25px;
+  border-radius:var(--radius);
+  box-shadow:0 8px 20px var(--shadow);
+  transition:.25s;
+}
+section.card:hover{ transform:translateY(-5px); }
+
+/* Headings */
+h2{ font-size:1.2rem; color:var(--accent); margin-bottom:15px; border-bottom:2px solid var(--accent-2); padding-bottom:6px; }
+
+/* Sidebar */
+aside{ position:sticky; top:30px; display:flex; flex-direction:column; gap:20px; }
+.aside-panel{ background:var(--card); padding:20px; border-radius:var(--radius); box-shadow:0 6px 18px var(--shadow); transition:.25s; }
+.aside-panel:hover{ transform:translateY(-5px); }
+
+/* Certifications */
+.cert-list{ display:flex; flex-direction:column; gap:12px; }
+.cert{ display:flex; align-items:center; gap:10px; background:#f1f8ff; border:1px solid rgba(0,119,255,0.2); padding:10px 12px; border-radius:6px; font-weight:600; color:var(--accent); transition:.2s; }
+.cert:hover{ transform:translateY(-4px); box-shadow:0 10px 25px rgba(0,119,255,0.2); }
+
+/* Social */
+.social-links{ display:flex; flex-direction:column; gap:12px; }
+.social-links a{ display:flex; align-items:center; gap:10px; text-decoration:none; background:#f9faff; padding:10px 14px; border:1px solid rgba(0,119,255,0.15); border-radius:6px; color:#333; font-weight:500; transition:.25s; }
+.social-links a:hover{ transform:translateY(-3px); background:var(--accent); color:#fff; }
+
+/* Skills */
+.meta{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+.badge{ background:#fff; border:1px solid #e6eefc; padding:6px 12px; border-radius:999px; font-size:.85rem; color:var(--muted); }
+
+/* Footer */
+footer{ background:var(--accent); color:#fff; text-align:center; padding:20px; border-radius: var(--radius) var(--radius) 0 0; font-size:.9rem; margin-top:40px; }
+
+/* ✅ Project Cards now in Flexbox Grid */
+.cards{ display:flex; flex-wrap:wrap; gap:20px; }
+.project-card{ flex:1 1 250px; background:#f9faff; border:1px solid rgba(0,119,255,0.1); padding:15px; border-radius:8px; transition:.2s; }
+.project-card:hover{ transform:translateY(-4px); box-shadow:0 8px 25px rgba(0,119,255,0.15); }
+
+/* ✅ Responsive tweaks */
+@media(max-width:900px){
+  main{ grid-template-columns:1fr; }
+  aside{ order:2; margin-top:20px; }
+  .contact-inline{ order:3; }
+}
+@media(max-width:768px){
+  .hamburger{ display:block; }
+  .main-nav ul{ display:none; flex-direction:column; margin-top:10px; gap:10px; }
+  #menu-toggle:checked + .hamburger + .main-nav ul{ display:flex; }
+  .header-flex{ flex-direction:column; align-items:flex-start; }
+}

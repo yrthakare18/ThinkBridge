@@ -1,0 +1,686 @@
+/* ==========================================================================
+   CSS FUNDAMENTALS DEMONSTRATION - SIGNUP FORM
+   Showcasing selectors, box model, cascade, and specificity
+   ========================================================================== */
+
+/* UNIVERSAL SELECTOR - Applies to all elements (Specificity: 0,0,0,0) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Modern box model approach */
+}
+
+/* ==========================================================================
+   BASIC ELEMENT SELECTORS (Specificity: 0,0,0,1)
+   These target HTML elements directly
+   ========================================================================== */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    
+    /* Box model properties for body */
+    margin: 0;           /* No margin on body */
+    padding: 20px;       /* Padding creates internal space */
+}
+
+h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;    /* Margin creates external space */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;      /* External spacing below heading */
+    padding-bottom: 0.5rem;   /* Internal spacing before border */
+    border-bottom: 2px solid #3498db;
+}
+
+h3 {
+    color: #34495e;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+/* Element selector with descendant combinator */
+form p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* All input elements - demonstrates element selector */
+input {
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* All label elements */
+label {
+    display: block;
+    font-weight: 500;
+    color: #4a5568;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+}
+
+/* All button elements */
+button {
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    
+    /* Box model for buttons */
+    padding: 12px 24px;      /* Internal spacing */
+    margin: 0.5rem 0.5rem 0.5rem 0; /* External spacing */
+    border: 2px solid transparent;   /* Border (invisible by default) */
+}
+
+/* All fieldset elements */
+fieldset {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    
+    /* Box model properties */
+    padding: 1.5rem;         /* Space inside fieldset */
+    margin-bottom: 1.5rem;   /* Space below each fieldset */
+}
+
+/* All legend elements */
+legend {
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 1.1rem;
+    
+    /* Box model for legend */
+    padding: 0 0.5rem;       /* Horizontal padding around legend text */
+}
+
+/* ==========================================================================
+   CLASS SELECTORS (Specificity: 0,0,1,0)
+   These target elements with specific class attributes
+   ========================================================================== */
+
+.main-header {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    
+    /* Box model properties */
+    padding: 2rem;          /* Internal spacing */
+    margin-bottom: 2rem;    /* External spacing below header */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;         /* Center container with auto margins */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    
+    /* Box model demonstration */
+    padding: 2rem;          /* Space inside container */
+}
+
+.demo-section {
+    margin-bottom: 2rem;    /* Space below section */
+}
+
+.section-title {
+    text-align: center;
+    color: #2980b9;
+    background: linear-gradient(90deg, #f8f9fa, #e9ecef, #f8f9fa);
+    
+    /* Box model for title */
+    padding: 1rem 2rem;     /* Vertical and horizontal padding */
+    margin-bottom: 1.5rem;  /* Space below title */
+    border-radius: 8px;
+    border-left: 4px solid #2980b9; /* Left border accent */
+}
+
+.form-description {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    background-color: #f8f9fa;
+    
+    /* Box model properties */
+    padding: 1rem;          /* Internal space */
+    margin-bottom: 2rem;    /* External space */
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+}
+
+/* Form layout classes */
+.form-row {
+    display: flex;
+    gap: 1rem;              /* Space between flex items */
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    flex: 1;
+    margin-bottom: 1.5rem;  /* Space below each form group */
+}
+
+/* Input styling classes */
+.text-input {
+    width: 100%;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    background-color: white;
+    
+    /* Box model for text inputs */
+    padding: 0.75rem 1rem;  /* Internal spacing */
+    margin-top: 0.2rem;     /* Small top margin */
+}
+
+.email-input {
+    width: 100%;
+    border: 2px solid #2ecc71;
+    border-radius: 6px;
+    background-color: #f8fff9;
+    
+    /* Box model properties */
+    padding: 0.75rem 1rem;
+    margin-top: 0.2rem;
+}
+
+.password-input {
+    width: 100%;
+    border: 2px solid #e74c3c;
+    border-radius: 6px;
+    background-color: #fdf2f2;
+    
+    /* Box model properties */
+    padding: 0.75rem 1rem;
+    margin-top: 0.2rem;
+}
+
+.date-input {
+    width: 100%;
+    border: 2px solid #9b59b6;
+    border-radius: 6px;
+    
+    /* Box model properties */
+    padding: 0.75rem 1rem;
+    margin-top: 0.2rem;
+}
+
+.select-input {
+    width: 100%;
+    border: 2px solid #f39c12;
+    border-radius: 6px;
+    background-color: white;
+    
+    /* Box model properties */
+    padding: 0.75rem 1rem;
+    margin-top: 0.2rem;
+}
+
+/* Button classes */
+.submit-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    font-weight: 600;
+    
+    /* Box model for submit button */
+    padding: 1rem 2rem;     /* Generous internal spacing */
+    margin-right: 1rem;     /* Space to the right */
+}
+
+.reset-button {
+    background: white;
+    color: #6c757d;
+    border: 2px solid #6c757d;
+    
+    /* Box model for reset button */
+    padding: 1rem 2rem;
+    margin: 0;
+}
+
+/* Checkbox styling */
+.checkbox-section {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    
+    /* Box model for checkbox section */
+    padding: 1.5rem;        /* Internal spacing */
+    margin: 2rem 0;         /* Vertical margins */
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;    /* Space between checkbox groups */
+}
+
+.checkbox-input {
+    margin-top: 0.2rem;     /* Align with label text */
+    flex-shrink: 0;
+}
+
+.checkbox-label {
+    margin-bottom: 0;
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+/* Multiple class selector - higher specificity */
+.highlight-input {
+    background-color: #fff3cd; /* Will be overridden by more specific selectors */
+    border-color: #ffc107;
+}
+
+.warning-label {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* Class combination - both classes must be present */
+.highlight-input.text-input {
+    background-color: #d1ecf1; /* Overrides .highlight-input due to higher specificity */
+    border-color: #17a2b8;
+}
+
+/* ==========================================================================
+   ID SELECTORS (Specificity: 0,1,0,0) - Highest specificity
+   These target unique elements with specific ID attributes
+   ========================================================================== */
+
+#page-title {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#firstName {
+    background-color: #e3f2fd; /* Overrides class styles due to higher specificity */
+    border-color: #2196f3;
+}
+
+#email {
+    background-color: #f3e5f5;
+    border-color: #9c27b0;
+}
+
+#signup-submit {
+    transform: scale(1.05);   /* Slightly larger than other buttons */
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+/* ==========================================================================
+   ATTRIBUTE SELECTORS (Specificity: 0,0,1,0)
+   These target elements based on their attributes
+   ========================================================================== */
+
+/* Select all inputs with type="text" */
+input[type="text"] {
+    background-image: linear-gradient(45deg, transparent 49%, #e3f2fd 49%, #e3f2fd 51%, transparent 51%);
+}
+
+/* Select all inputs with type="email" */
+input[type="email"] {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 40px;    /* Make room for icon */
+}
+
+/* Select all inputs with type="password" */
+input[type="password"] {
+    letter-spacing: 0.1em;
+}
+
+/* Select required inputs */
+input[required] {
+    border-left: 4px solid #ffc107; /* Yellow left border for required fields */
+}
+
+/* Select inputs with placeholder attribute */
+input[placeholder] {
+    font-style: italic;
+}
+
+/* Attribute selector with value matching */
+input[name="firstName"] {
+    text-transform: capitalize;
+}
+
+/* ==========================================================================
+   PSEUDO-CLASS SELECTORS (Specificity: 0,0,1,0)
+   These target elements in specific states
+   ========================================================================== */
+
+/* Focus state for all inputs */
+input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Hover state for buttons */
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Active state for buttons */
+button:active {
+    transform: translateY(0);
+}
+
+/* Valid state for inputs */
+input:valid {
+    border-color: #28a745;
+}
+
+/* Invalid state for inputs */
+input:invalid {
+    border-color: #dc3545;
+}
+
+/* First child of form groups */
+.form-group:first-child {
+    margin-top: 0;
+}
+
+/* Last child of form groups */
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+/* Nth-child selectors for alternating colors */
+.concept-list .concept-item:nth-child(odd) {
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.concept-list .concept-item:nth-child(even) {
+    background-color: #e9ecef;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+/* Hover effects for list items */
+.concept-item:hover {
+    background-color: #dee2e6;
+    cursor: pointer;
+    transform: translateX(5px);
+}
+
+/* ==========================================================================
+   COMBINATOR SELECTORS
+   These target elements based on their relationship to other elements
+   ========================================================================== */
+
+/* Descendant combinator - targets all p elements inside .form-container */
+.form-container p {
+    color: #495057;
+}
+
+/* Child combinator - targets direct children only */
+.form-container > .demo-section > h2 {
+    border-left: 4px solid #007bff;
+    padding-left: 1rem;
+}
+
+/* Adjacent sibling combinator - targets element immediately after */
+.form-group + .form-group {
+    margin-top: 0.5rem;
+}
+
+/* General sibling combinator - targets all siblings after */
+fieldset ~ fieldset {
+    border-top: 2px dashed #dee2e6;
+}
+
+/* Complex combinator example */
+.checkbox-section .checkbox-group input[type="checkbox"] + label {
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   BOX MODEL DEMONSTRATIONS
+   Different approaches to box sizing and spacing
+   ========================================================================== */
+
+.demo-info {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    
+    /* Box model properties */
+    margin-top: 3rem;       /* External space above */
+    padding: 2rem;          /* Internal space */
+}
+
+.info-title {
+    color: #495057;
+    border-bottom: 2px solid #6c757d;
+    
+    /* Box model for info title */
+    padding-bottom: 0.5rem; /* Space between text and border */
+    margin-bottom: 1.5rem;  /* Space below title */
+}
+
+.concept-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.concept-item {
+    padding: 0.5rem 0;      /* Vertical padding */
+    margin-bottom: 0.5rem;  /* Space between items */
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Box model demonstration boxes */
+.box-model-demo {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #dee2e6;
+}
+
+.demo-box {
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    margin: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Default box model (content-box) */
+.default-box {
+    box-sizing: content-box; /* Default - width applies to content only */
+    width: 120px;            /* Content width */
+    height: 60px;            /* Content height */
+    padding: 15px;           /* 15px padding on all sides */
+    border: 5px solid #007bff; /* 5px border */
+    background-color: #007bff;
+    /* Total width = 120 + 30 + 10 = 160px */
+    /* Total height = 60 + 30 + 10 = 100px */
+}
+
+/* Content-box demonstration */
+.content-box {
+    box-sizing: content-box;
+    width: 120px;
+    height: 60px;
+    padding: 20px;
+    border: 8px solid #28a745;
+    background-color: #28a745;
+    /* Total width = 120 + 40 + 16 = 176px */
+}
+
+/* Border-box demonstration */
+.border-box {
+    box-sizing: border-box;  /* Modern approach - width includes everything */
+    width: 120px;            /* Total width (including padding and border) */
+    height: 60px;            /* Total height (including padding and border) */
+    padding: 20px;
+    border: 8px solid #dc3545;
+    background-color: #dc3545;
+    /* Content width = 120 - 40 - 16 = 64px */
+    /* Content height = 60 - 40 - 16 = 4px */
+}
+
+.demo-box:hover {
+    transform: scale(1.1);
+}
+
+/* ==========================================================================
+   CASCADE AND SPECIFICITY DEMONSTRATIONS
+   ========================================================================== */
+
+/* Lower specificity rule */
+.required-field {
+    color: #6c757d;
+    font-weight: normal;
+}
+
+/* Higher specificity - class + pseudo-class */
+.required-field:after {
+    content: " *";
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* Even higher specificity - element + class */
+label.required-field {
+    color: #495057;
+    font-weight: 500;
+}
+
+/* Highest specificity - element + class + pseudo-class */
+label.required-field:after {
+    color: #e74c3c;
+}
+
+/* Inheritance demonstration */
+.input-hint {
+    /* These properties will be inherited by child elements */
+    color: #6c757d;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    font-style: italic;
+    
+    /* These properties will NOT be inherited */
+    background-color: #f8f9fa;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    margin-top: 0.25rem;
+    border-left: 3px solid #ffc107;
+}
+
+.hint-text {
+    /* Inherits: color, font-size, line-height, font-style from parent */
+    margin: 0; /* Override default paragraph margin */
+}
+
+/* Cascade order demonstration - later rules override earlier ones */
+.special-input {
+    background-color: #fff3cd; /* First rule */
+    border-color: #ffc107;
+}
+
+.special-input {
+    background-color: #d4edda; /* Overrides previous background */
+    /* border-color remains from first rule */
+}
+
+/* !important demonstration (use sparingly) */
+.highlight-item {
+    color: #155724 !important; /* Overrides other color rules */
+    background-color: #d4edda;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+}
+
+/* Even with higher specificity, this won't override !important above */
+.concept-list .concept-item.highlight-item {
+    color: #721c24; /* This won't apply due to !important above */
+}
+
+.warning-item {
+    color: #721c24;
+    background-color: #f8d7da;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+}
+
+/* ==========================================================================
+   SITE FOOTER
+   ========================================================================== */
+
+.site-footer {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    
+    /* Box model properties */
+    padding: 1.5rem;        /* Internal spacing */
+    margin-top: 3rem;       /* Space above footer */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   RESPONSIVE BOX MODEL
+   How box model adapts to different screen sizes
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .form-container {
+        margin: 0 1rem;     /* Reduced horizontal margins */
+        padding: 1.5rem;    /* Reduced internal padding */
+    }
+    
+    .form-row {
+        flex-direction: column; /* Stack form fields vertically */
+        gap: 0;
+    }
+    
+    .main-header {
+        padding: 1.5rem 1rem; /* Reduced padding on mobile */
+    }
+    
+    .demo-box {
+        margin: 0.25rem;    /* Smaller margins between demo boxes */
+    }
+    
+    button {
+        width: 100%;        /* Full width buttons on mobile */
+        margin-bottom: 0.5rem;
+    }
+}

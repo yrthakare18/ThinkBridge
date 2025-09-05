@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Create Your Account</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 480px;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+        
+        .form-subtitle {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+        
+        fieldset {
+            border: none;
+            margin-bottom: 24px;
+        }
+        
+        legend {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #2d3748;
+            margin-bottom: 16px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        label {
+            display: block;
+            font-weight: 500;
+            color: #4a5568;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s;
+            background: white;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        input:invalid {
+            border-color: #f56565;
+        }
+        
+        input:invalid:focus {
+            border-color: #f56565;
+            box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.1);
+        }
+        
+        .required::after {
+            content: " *";
+            color: #f56565;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .checkbox-group label {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .submit-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.4);
+        }
+        
+        .error-message {
+            color: #f56565;
+            font-size: 0.85rem;
+            margin-top: 4px;
+            display: none;
+        }
+        
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 24px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .form-title {
+                font-size: 1.6rem;
+            }
+        }
+        
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <main class="form-container">
+        <header class="form-header">
+            <h1 class="form-title">Create Account</h1>
+            <p class="form-subtitle">Join us today and get started</p>
+        </header>
+        
+        <form novalidate aria-labelledby="signup-form" role="form">
+            <fieldset>
+                <legend>Personal Information</legend>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName" class="required">First Name</label>
+                        <input 
+                            type="text" 
+                            id="firstName" 
+                            name="firstName" 
+                            required 
+                            aria-required="true"
+                            aria-describedby="firstName-error"
+                            autocomplete="given-name"
+                            maxlength="50"
+                        >
+                        <div id="firstName-error" class="error-message" role="alert" aria-live="polite"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName" class="required">Last Name</label>
+                        <input 
+                            type="text" 
+                            id="lastName" 
+                            name="lastName" 
+                            required 
+                            aria-required="true"
+                            aria-describedby="lastName-error"
+                            autocomplete="family-name"
+                            maxlength="50"
+                        >
+                        <div id="lastName-error" class="error-message" role="alert" aria-live="polite"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="required">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required 
+                        aria-required="true"
+                        aria-describedby="email-error"
+                        autocomplete="email"
+                    >
+                    <div id="email-error" class="error-message" role="alert" aria-live="polite"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        aria-describedby="phone-error"
+                        autocomplete="tel"
+                        pattern="[0-9\-\+\s\(\)]*"
+                    >
+                    <div id="phone-error" class="error-message" role="alert" aria-live="polite"></div>
+                </div>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Account Security</legend>
+                
+                <div class="form-group">
+                    <label for="password" class="required">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        required 
+                        aria-required="true"
+                        aria-describedby="password-error"
+                        autocomplete="new-password"
+                        minlength="8"
+                    >
+                    <div id="password-error" class="error-message" role="alert" aria-live="polite"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword" class="required">Confirm Password</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        required 
+                        aria-required="true"
+                        aria-describedby="confirmPassword-error"
+                        autocomplete="new-password"
+                    >
+                    <div id="confirmPassword-error" class="error-message" role="alert" aria-live="polite"></div>
+                </div>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Additional Information</legend>
+                
+                <div class="form-group">
+                    <label for="birthDate">Date of Birth</label>
+                    <input 
+                        type="date" 
+                        id="birthDate" 
+                        name="birthDate" 
+                        aria-describedby="birthDate-error"
+                        autocomplete="bday"
+                    >
+                    <div id="birthDate-error" class="error-message" role="alert" aria-live="polite"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country" name="country" autocomplete="country">
+                        <option value="">Select a country</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="AU">Australia</option>
+                        <option value="DE">Germany</option>
+                        <option value="FR">France</option>
+                        <option value="IN">India</option>
+                        <option value="JP">Japan</option>
+                        <option value="BR">Brazil</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </fieldset>
+            
+            <div class="checkbox-group">
+                <input 
+                    type="checkbox" 
+                    id="newsletter" 
+                    name="newsletter"
+                    aria-describedby="newsletter-desc"
+                >
+                <label for="newsletter">
+                    <span id="newsletter-desc">Subscribe to our newsletter for updates and exclusive offers</span>
+                </label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input 
+                    type="checkbox" 
+                    id="terms" 
+                    name="terms" 
+                    required 
+                    aria-required="true"
+                    aria-describedby="terms-error"
+                >
+                <label for="terms" class="required">
+                    I agree to the Terms of Service and Privacy Policy
+                </label>
+                <div id="terms-error" class="error-message" role="alert" aria-live="polite"></div>
+            </div>
+            
+            <button type="submit" class="submit-btn" aria-describedby="submit-desc">
+                Create Account
+            </button>
+            <p id="submit-desc" class="sr-only">Creates your new account with the information provided above</p>
+        </form>
+    </main>
+</body>
+</html>

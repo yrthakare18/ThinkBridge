@@ -1,0 +1,37 @@
+# Session 4 – First Push to GitHub
+
+## ✅ Steps Followed
+
+1. **Initialize Git in project folder**
+   ```bash
+   git init
+
+2. **Stage all files**
+   ```bash
+    git add .
+
+3. **Commit changes**
+   ```bash
+    git commit -m "First commit - Day 1 project"
+
+4. **Create new repo on GitHub**
+   - Open GitHub → "New Repository"
+   - Repo name: thinkbridge-day1
+   - Keep it public
+   - Do not initialize with README (already have local files)
+
+5. **Add remote origin**
+    ```bash
+    git remote add origin https://github.com/username/thinkbridge-day1.git
+
+6. **Push to GitHub**
+    ```bash 
+    git push -u origin main
+
+7. **Verify remote repo**   
+    ```bash
+    git remote -v
+    
+
+
+
