@@ -1,30 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Session 4 – DOM & Events</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Session 5 – CSS & JS Demo</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1 id="header">Session 4: DOM & Events Demo</h1>
+<header>
+<h1 id="header">Session 5: CSS Polish & JS Objects</h1>
+</header>
 
-  <section>
-    <h2>Change Header</h2>
-    <button id="changeBtn">Update Header</button>
-  </section>
+<main>
+<!-- Change Header Section -->
+<section>
+<h2>Change Header</h2>
+<button id="changeBtn">Update Header</button>
+</section>
 
-  <section>
-    <h2>Dynamic Paragraph</h2>
-    <button id="addParaBtn">Add Paragraph</button>
-  </section>
+<!-- Dynamic Paragraph Section -->
+<section>
+<h2>Dynamic Paragraph</h2>
+<button id="addParaBtn">Add Paragraph</button>
+</section>
 
-  <section>
-    <h2>Input Event Demo</h2>
-    <input type="text" id="nameInput" placeholder="Type something...">
-    <p id="inputOutput"></p>
-  </section>
+<!-- Input Event Section -->
+<section>
+<h2>Input Event Demo</h2>
+<input type="text" id="nameInput" placeholder="Type something..." />
+<p id="inputOutput"></p>
+</section>
 
-  <script src="dom.js"></script>
+<!-- Responsive Image Section -->
+<section>
+<h2>Responsive Image Example</h2>
+<img
+  src="small.jpg"
+  srcset="small.jpg 480w, medium.jpg 768w, large.jpg 1200w"
+  sizes="(max-width: 600px) 480px, (max-width: 900px) 768px, 1200px"
+  alt="Responsive Example"
+  class="responsive-img"
+/>
+</section>
+
+<!-- JS Object Section -->
+<section id="jsObjectSection">
+<h2>JavaScript Object Demo</h2>
+</section>
+</main>
+
+<script src="dom.js"></script>
 </body>
 </html>
