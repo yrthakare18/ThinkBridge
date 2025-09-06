@@ -1,3 +1,12 @@
+<!-- The background color is changed to a gentle off-white shade (#f7f9fc) for a pleasant reading experience.
+
+Added Keywords:
+
+HTML (15+): html5 semantic elements (article, aside, details, summary, etc.), common forms elements (input types, label), media tags (video, audio), etc.
+
+CSS (15+): common properties like box-shadow, opacity, z-index, flex-wrap, grid-gap, position types, overflow, cursor, transition, etc.
+
+JavaScript (15+): let/const/var, for/while/if/switch, functions, array and object methods, async/await, Promise, event handling (addEventListener), etc.-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -813,6 +822,21 @@
       { name: "switch-case", type: "javascript", difficulty: "beginner", description: "Multi-branch conditional.", example: "switch(x){case 1:break}", tags: ["control"] },
       { name: "arrow function", type: "javascript", difficulty: "beginner", description: "Shorter function syntax.", example: "const f=(x)=>x*2", tags: ["functions","syntax"] },
       { name: "promise.all", type: "javascript", difficulty: "advanced", description: "Wait for multiple promises.", example: "Promise.all([p1,p2]).then(...)", tags: ["async","promises"] },
+      { name: "event delegation", type: "javascript", difficulty: "advanced", description: "Handle events at a parent level.", example: "parent.addEventListener('click', e=>{ if(e.target.matches('.btn')){} })", tags: ["events","performance"] },
+      { name: "debounce", type: "javascript", difficulty: "advanced", description: "Limit function calls over time.", example: "const debounced=debounce(fn,300)", tags: ["performance","functions"] },
+      { name: "throttle", type: "javascript", difficulty: "advanced", description: "Ensure function called at most once in interval.", example: "const throttled=throttle(fn,300)", tags: ["performance","functions"] },
+      { name: "nullish coalescing", type: "javascript", difficulty: "intermediate", description: "Default value for null/undefined.", example: "const x=a ?? 'default'", tags: ["operators","es2020"] },
+      { name: "optional chaining", type: "javascript", difficulty: "intermediate", description: "Safely access nested properties.", example: "const x=obj?.prop?.subprop", tags: ["operators","es2020"] },
+      { name: "setAttribute", type: "javascript", difficulty: "beginner", description: "Set attribute on an element.", example: "el.setAttribute('data-id','123')", tags: ["dom","attributes"] },
+      { name: "getAttribute", type: "javascript", difficulty: "beginner", description: "Get attribute value from an element.", example: "const id=el.getAttribute('data-id')", tags: ["dom","attributes"] },
+      { name: "removeAttribute", type: "javascript", difficulty: "beginner", description: "Remove attribute from an element.", example: "el.removeAttribute('data-id')", tags: ["dom","attributes"] },
+      { name: "parentNode", type: "javascript", difficulty: "beginner", description: "Get parent node of an element.", example: "const parent=el.parentNode", tags: ["dom","traversal"] },
+      { name: "childNodes", type: "javascript", difficulty: "beginner", description: "Get child nodes of an element.", example: "const children=el.childNodes", tags: ["dom","traversal"] },
+      { name: "nextSibling", type: "javascript", difficulty: "beginner", description: "Get next sibling node.", example: "const next=el.nextSibling", tags: ["dom","traversal"] },
+      { name: "previousSibling", type: "javascript", difficulty: "beginner", description: "Get previous sibling node.", example: "const prev=el.previousSibling", tags: ["dom","traversal"] },
+      { name: "createElement", type: "javascript", difficulty: "beginner", description: "Create new HTML element.", example: "const div=document.createElement('div')", tags: ["dom","creation"] },
+      { name: "appendChild", type: "javascript", difficulty: "beginner", description: "Append child element to parent.", example: "parent.appendChild(child)", tags: ["dom","manipulation"] },
+      { name: "removeChild", type: "javascript", difficulty: "beginner", description: "Remove child element from parent.", example: "parent.removeChild(child)", tags: ["dom","manipulation"] }
     ];
 
     let filteredKeywords = [...keywords];
