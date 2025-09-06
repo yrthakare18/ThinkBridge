@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Web Development Reference</title>
+  <style>
+    /* Root colors and variables */
+    :root {
+      --primary-color: #3b82f6;
+      --secondary-color: #8b5cf6;
+      --accent-color: #06d6a0;
+      --danger-color: #ef4444;
+      --warning-color: #f59e0b;
+      --success-color: #10b981;
+      --white: #ffffff;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --border-radius: 12px;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body styling */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--white);
+      color: var(--gray-900);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* Header Section */
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 60px 20px;
+      border-radius: var(--border-radius);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+      animation: rotate 20s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    header h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Search Container */
+    .search-container {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 18px 60px 18px 24px;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--border-radius);
+      background: var(--white);
+      color: var(--gray-900);
+      font-size: 1.1rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      outline-offset: 2px;
+    }
+
+    #searchInput:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    }
+
+    #searchInput::placeholder {
+      color: var(--gray-400);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+
+    /* Controls Section */
+    .controls-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      padding: 12px 24px;
+      border: 2px solid var(--gray-200);
+      border-radius: 25px;
+      background: var(--white);
+      color: var(--gray-700);
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+      user-select: none;
+    }
+
+    .filter-tab:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: var(--primary-color);
+    }
+
+    .filter-tab.active {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      color: white;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .view-controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      user-select: none;
+    }
+
+    .view-toggle {
+      padding: 8px 12px;
+      border: 1px solid var(--gray-300);
+      background: var(--white);
+      cursor: pointer;
+      transition: var(--transition);
+      border-radius: 6px;
+      font-size: 1.1rem;
+    }
+
+    .view-toggle.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .sort-select {
+      padding: 8px 12px;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      background: var(--white);
+      color: var(--gray-700);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Stats Section */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 24px;
+      background: var(--white);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      display: block;
+    }
+
+    .stat-label {
+      color: var(--gray-600);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    /* Keywords Grid and Cards */
+    .keywords-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 24px;
+      transition: var(--transition);
+    }
+
+    .keywords-grid.list-view {
+      grid-template-columns: 1fr;
+    }
+
+    .keywords-grid.compact-view {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .keyword-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .keyword-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--gray-300);
+    }
+
+    .keyword-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: left center;
+      z-index: 1;
+    }
+
+    .keyword-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    /* Header inside cards */
+    .keyword-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .keyword-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+      background: var(--gray-100);
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--gray-200);
+      user-select: all;
+    }
+
+    .keyword-meta {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .keyword-type {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      user-select: none;
+    }
+
+    .html { background: var(--warning-color); color: white; }
+    .css { background: var(--primary-color); color: white; }
+    .javascript { background: var(--success-color); color: white; }
+
+    .difficulty-badge {
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      user-select: none;
+    }
+
+    .difficulty-beginner { background: var(--success-color); color: white; }
+    .difficulty-intermediate { background: var(--warning-color); color: white; }
+    .difficulty-advanced { background: var(--danger-color); color: white; }
+
+    /* Description inside cards */
+    .keyword-description {
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      user-select: text;
+      white-space: pre-wrap;
+    }
+
+    /* Example code box */
+    .keyword-example {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: auto;
+      position: relative;
+      overflow-x: auto;
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+      user-select: text;
+    }
+
+    .example-label {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 0.7rem;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: var(--white);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--gray-200);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Copy button */
+    .copy-button {
+      position: absolute;
+      top: 8px;
+      left: 12px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      opacity: 0;
+      transition: var(--transition);
+      user-select: none;
+      z-index: 2;
+    }
+
+    .keyword-example:hover .copy-button {
+      opacity: 1;
+    }
+
+    .copy-button:hover {
+      background: var(--secondary-color);
+    }
+
+    /* Tags below example */
+    .keyword-tags {
+      display: flex;
+      gap: 6px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+      user-select: none;
+    }
+
+    .tag {
+      padding: 2px 8px;
+      background: var(--gray-100);
+      color: var(--gray-600);
+      font-size: 0.7rem;
+      border-radius: 12px;
+      border: 1px solid var(--gray-200);
+    }
+
+    /* No results message */
+    .no-results {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--gray-500);
+      background: var(--gray-50);
+      border-radius: var(--border-radius);
+      border: 2px dashed var(--gray-300);
+      user-select: none;
+    }
+
+    .no-results-icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    /* Floating action button */
+    .floating-action-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: var(--shadow-xl);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      z-index: 1000;
+    }
+
+    .floating-action-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .keywords-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+      .controls-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .filter-tabs {
+        justify-content: center;
+        gap: 8px;
+      }
+      .filter-tab {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+      }
+      .floating-action-button {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      header .subtitle {
+        font-size: 1rem;
+      }
+      .keyword-card {
+        padding: 16px;
+      }
+      .keyword-name {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--gray-100);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--gray-400);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gray-500);
+    }
+
+    /* Fade in animation */
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Web Development Reference</h1>
+      <p class="subtitle">Complete guide to HTML, CSS & JavaScript keywords with examples</p>
+    </header>
+
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search keywords, descriptions, or examples..." aria-label="Search keywords" />
+      <span class="search-icon" aria-hidden="true">🔍</span>
+    </div>
+
+    <div class="controls-section">
+      <div class="filter-tabs" role="tablist" aria-label="Filter keywords by type">
+        <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true" tabindex="0">All</button>
+        <button class="filter-tab" data-filter="html" role="tab" aria-selected="false" tabindex="-1">HTML</button>
+        <button class="filter-tab" data-filter="css" role="tab" aria-selected="false" tabindex="-1">CSS</button>
+        <button class="filter-tab" data-filter="javascript" role="tab" aria-selected="false" tabindex="-1">JavaScript</button>
+      </div>
+
+      <div class="view-controls" role="group" aria-label="Change view mode">
+        <button class="view-toggle active" data-view="grid" title="Grid View" aria-pressed="true">📊</button>
+        <button class="view-toggle" data-view="list" title="List View" aria-pressed="false">📋</button>
+        <button class="view-toggle" data-view="compact" title="Compact View" aria-pressed="false">📱</button>
+        <select class="sort-select" id="sortSelect" aria-label="Sort keywords">
+          <option value="name">Sort by Name</option>
+          <option value="type">Sort by Type</option>
+          <option value="difficulty">Sort by Difficulty</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="stats" aria-live="polite" aria-atomic="true">
+      <div class="stat-item">
+        <span class="stat-number" id="totalCount">0</span>
+        <span class="stat-label">Total Keywords</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" id="htmlCount">0</span>
+        <span class="stat-label">HTML</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" id="cssCount">0</span>
+        <span class="stat-label">CSS</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" id="jsCount">0</span>
+        <span class="stat-label">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="keywords-grid" id="keywordsGrid" role="list" aria-label="Web development keywords"></div>
+
+    <div class="no-results" id="noResults" style="display: none;" role="alert" aria-live="assertive">
+      <div class="no-results-icon">🔍</div>
+      <h3>No keywords found</h3>
+      <p>Try adjusting your search terms or filters</p>
+    </div>
+  </div>
+
+  <button class="floating-action-button" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">↑</button>
+
+  <script>
+    const keywords = [
+      // Sample entries for illustration; add full keyword data as necessary
+      { name: "<!DOCTYPE html>", type: "html", difficulty: "beginner", description: "Declares HTML5 document type. Must be first line.", example: "<!DOCTYPE html>\n<html lang=\"en\">\n  <head><title>Page</title></head>\n  <body>Content</body>\n</html>", tags: ["document", "declaration"] },
+      { name: "<html>", type: "html", difficulty: "beginner", description: "Root element containing all page content.", example: "<html lang=\"en\">\n  <!-- All content goes here -->\n</html>", tags: ["structure", "root"] },
+      { name: "<head>", type: "html", difficulty: "beginner", description: "Contains document metadata not displayed to users.", example: "<head>\n  <meta charset=\"UTF-8\">\n  <title>Page Title</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>", tags: ["metadata", "structure"] },
+      { name: "<body>", type: "html", difficulty: "beginner", description: "Contains visible page content users interact with.", example: "<body>\n  <h1>Welcome</h1>\n  <p>Page content here</p>\n</body>", tags: ["structure", "content"] },
+      { name: "color", type: "css", difficulty: "beginner", description: "Sets text color using various formats.", example: ".text {\n  color: #ff0000;\n  color: rgb(255, 0, 0);\n  color: hsl(0, 100%, 50%);\n}", tags: ["text", "color"] },
+      { name: "flex-direction", type: "css", difficulty: "intermediate", description: "Sets main axis direction in flex container.", example: ".flex-container {\n  display: flex;\n  flex-direction: row;\n  flex-direction: column;\n}", tags: ["flexbox", "layout"] },
+      { name: "let", type: "javascript", difficulty: "beginner", description: "Block-scoped variable declaration.", example: "let count = 0;\nlet message = 'Hello World';\nif (true) {\n  let blockScoped = 'only here';\n}", tags: ["variables", "declaration"] },
+      { name: "function", type: "javascript", difficulty: "beginner", description: "Function declaration with hoisting.", example: "function greet(name) {\n  return `Hello, ${name}!`;\n}\nconst result = greet('World');", tags: ["functions", "declaration"] },
+      { name: "async/await", type: "javascript", difficulty: "advanced", description: "Syntactic sugar for working with Promises.", example: "async function fetchData() {\n  try {\n    const response = await fetch('/api/data');\n    const data = await response.json();\n    return data;\n  } catch (error) {\n    console.error('Error:', error);\n  }\n}", tags: ["async", "es2017"] }
+    ];
+
+    let filteredKeywords = [...keywords];
+    let currentFilter = 'all';
+    let currentView = 'grid';
+
+    // Initialize the application
+    function init() {
+      updateStats();
+      sortKeywords();
+      renderKeywords();
+      attachEventListeners();
+    }
+
+    // Update keywords counts
+    function updateStats() {
+      const total = filteredKeywords.length;
+      const htmlCount = filteredKeywords.filter(k => k.type === 'html').length;
+      const cssCount = filteredKeywords.filter(k => k.type === 'css').length;
+      const jsCount = filteredKeywords.filter(k => k.type === 'javascript').length;
+
+      document.getElementById('totalCount').textContent = total;
+      document.getElementById('htmlCount').textContent = htmlCount;
+      document.getElementById('cssCount').textContent = cssCount;
+      document.getElementById('jsCount').textContent = jsCount;
+    }
+
+    // Render keyword cards
+    function renderKeywords() {
+      const container = document.getElementById('keywordsGrid');
+      const noResults = document.getElementById('noResults');
+
+      if (filteredKeywords.length === 0) {
+        container.style.display = 'none';
+        noResults.style.display = 'block';
+        container.innerHTML = '';
+        return;
+      }
+
+      container.style.display = 'grid';
+      noResults.style.display = 'none';
+
+      container.innerHTML = filteredKeywords.map(keyword => `
+        <div class="keyword-card fade-in" role="listitem">
+          <div class="keyword-header">
+            <code class="keyword-name" tabindex="0">${escapeHTML(keyword.name)}</code>
+            <div class="keyword-meta">
+              <span class="keyword-type ${keyword.type}">${keyword.type}</span>
+              <span class="difficulty-badge difficulty-${keyword.difficulty}">${keyword.difficulty}</span>
+            </div>
+          </div>
+          <p class="keyword-description">${escapeHTML(keyword.description)}</p>
+          <div class="keyword-example" aria-label="Example code for ${escapeHTML(keyword.name)}">
+            <span class="example-label">Example</span>
+            <button class="copy-button" aria-label="Copy example code for ${escapeHTML(keyword.name)}" onclick="copyToClipboard(\`${escapeBackticks(keyword.example)}\`)">Copy</button>
+            <code>${escapeHTML(keyword.example)}</code>
+          </div>
+          <div class="keyword-tags" aria-label="Tags for ${escapeHTML(keyword.name)} keywords">
+            ${keyword.tags.map(tag => `<span class="tag">${escapeHTML(tag)}</span>`).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Escape HTML to prevent injection
+    function escapeHTML(text) {
+      if (!text) return '';
+      return text.replace(/[&<>"']/g, function(m) {
+        switch (m) {
+          case '&': return '&amp;';
+          case '<': return '&lt;';
+          case '>': return '&gt;';
+          case '"': return '&quot;';
+          case "'": return '&#39;';
+          default: return m;
+        }
+      });
+    }
+
+    // Escape backticks for template literals
+    function escapeBackticks(text) {
+      if (!text) return '';
+      return text.replace(/`/g, '\\`');
+    }
+
+    // Filter keywords by search term and filter type
+    function filterKeywords(searchTerm = '') {
+      const term = searchTerm.toLowerCase();
+      filteredKeywords = keywords.filter(keyword => {
+        const matchesSearch =
+          !term ||
+          keyword.name.toLowerCase().includes(term) ||
+          keyword.description.toLowerCase().includes(term) ||
+          keyword.example.toLowerCase().includes(term) ||
+          keyword.tags.some(tag => tag.toLowerCase().includes(term));
+
+        const matchesFilter = currentFilter === 'all' || keyword.type === currentFilter;
+
+        return matchesSearch && matchesFilter;
+      });
+      sortKeywords();
+      updateStats();
+      renderKeywords();
+    }
+
+    // Sort keywords with current criterion
+    function sortKeywords() {
+      const sortBy = document.getElementById('sortSelect').value;
+      const difficultyOrder = { beginner: 0, intermediate: 1, advanced: 2 };
+
+      filteredKeywords.sort((a, b) => {
+        switch (sortBy) {
+          case 'name':
+            return a.name.localeCompare(b.name);
+          case 'type':
+            return a.type.localeCompare(b.type) || a.name.localeCompare(b.name);
+          case 'difficulty':
+            return difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty] || a.name.localeCompare(b.name);
+          default:
+            return 0;
+        }
+      });
+    }
+
+    // Copy code example to clipboard
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        // Optional: Show notification/toast here
+        console.log('Code copied to clipboard');
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+    // Scroll page to top smoothly
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Attach event listeners for UI controls
+    function attachEventListeners() {
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('input', (e) => {
+        filterKeywords(e.target.value);
+      });
+
+      const filterTabs = document.querySelectorAll('.filter-tab');
+      filterTabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+          // Update aria-selected and tabindex for accessibility
+          filterTabs.forEach(t => {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+            t.tabIndex = -1;
+          });
+          e.target.classList.add('active');
+          e.target.setAttribute('aria-selected', 'true');
+          e.target.tabIndex = 0;
+
+          currentFilter = e.target.dataset.filter;
+          filterKeywords(searchInput.value);
+        });
+      });
+
+      const viewToggles = document.querySelectorAll('.view-toggle');
+      viewToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+          viewToggles.forEach(t => {
+            t.classList.remove('active');
+            t.setAttribute('aria-pressed', 'false');
+          });
+          e.target.classList.add('active');
+          e.target.setAttribute('aria-pressed', 'true');
+
+          currentView = e.target.dataset.view;
+          const grid = document.getElementById('keywordsGrid');
+          grid.className = `keywords-grid${currentView === 'grid' ? '' : ' ' + currentView + '-view'}`;
+        });
+      });
+
+      const sortSelect = document.getElementById('sortSelect');
+      sortSelect.addEventListener('change', () => {
+        sortKeywords();
+        renderKeywords();
+      });
+    }
+
+    // Initialize on DOM loaded
+    document.addEventListener('DOMContentLoaded', init);
+
+    // Expose functions globally for button onclick
+    window.copyToClipboard = copyToClipboard;
+    window.scrollToTop = scrollToTop;
+  </script>
+</body>
+</html>
