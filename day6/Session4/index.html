@@ -1,0 +1,1156 @@
+<!-- The background color is changed to a gentle off-white shade (#f7f9fc) for a pleasant reading experience.
+
+Added Keywords:
+
+HTML (15+): html5 semantic elements (article, aside, details, summary, etc.), common forms elements (input types, label), media tags (video, audio), etc.
+
+CSS (15+): common properties like box-shadow, opacity, z-index, flex-wrap, grid-gap, position types, overflow, cursor, transition, etc.
+
+JavaScript (15+): let/const/var, for/while/if/switch, functions, array and object methods, async/await, Promise, event handling (addEventListener), etc.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Web Development Reference</title>
+  <style>
+    /* Root colors and variables */
+    :root {
+      --primary-color: #3b82f6;
+      --secondary-color: #8b5cf6;
+      --accent-color: #06d6a0;
+      --danger-color: #ef4444;
+      --warning-color: #f59e0b;
+      --success-color: #10b981;
+      --white: #ffffff;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --border-radius: 12px;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --max-width: 1200px;
+    }
+
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body styling */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(180deg,#f7fafc 0%, #eef2f7 100%);
+      color: var(--gray-900);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      width: 100%;
+    }
+
+    /* Header Section */
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 40px 20px;
+      border-radius: var(--border-radius);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+      animation: rotate 20s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+      letter-spacing: -0.5px;
+    }
+
+    header .subtitle {
+      font-size: 1rem;
+      opacity: 0.95;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 18px;
+    }
+
+    /* Navbar (hamburger) */
+    nav.navbar {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+
+    .nav-links li a:hover {
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .hamburger {
+      display: none;
+      background: rgba(0,0,0,0.12);
+      border: none;
+      color: white;
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    /* Search Container */
+    .search-container {
+      position: relative;
+      max-width: 720px;
+      margin: 20px auto 40px;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 16px 60px 16px 20px;
+      border: 2px solid var(--gray-200);
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--gray-900);
+      font-size: 1rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      outline-offset: 2px;
+    }
+
+    #searchInput:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.08);
+    }
+
+    #searchInput::placeholder {
+      color: var(--gray-400);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+
+    /* Controls Section */
+    .controls-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      padding: 10px 18px;
+      border: 1px solid var(--gray-200);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--gray-800);
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+      user-select: none;
+    }
+
+    .filter-tab:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-color);
+    }
+
+    .filter-tab.active {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      color: white;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .view-controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      user-select: none;
+    }
+
+    .view-toggle {
+      padding: 8px 12px;
+      border: 1px solid var(--gray-300);
+      background: var(--white);
+      cursor: pointer;
+      transition: var(--transition);
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .view-toggle.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .sort-select {
+      padding: 8px 12px;
+      border: 1px solid var(--gray-300);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--gray-700);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Stats Section */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin: 24px 0 32px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 18px;
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .stat-number {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      display: block;
+    }
+
+    .stat-label {
+      color: var(--gray-600);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 6px;
+    }
+
+    /* Keywords Grid and Cards - set to 3 columns wide on large screens */
+    .keywords-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      transition: var(--transition);
+      margin-bottom: 40px;
+    }
+
+    .keywords-grid.list-view {
+      grid-template-columns: 1fr;
+    }
+
+    .keywords-grid.compact-view {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .keyword-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .keyword-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--gray-300);
+    }
+
+    .keyword-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      transform: scaleX(0);
+      transition: transform 0.28s ease;
+      transform-origin: left center;
+      z-index: 1;
+    }
+
+    .keyword-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    /* Header inside cards */
+    .keyword-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .keyword-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--blue-50);
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+      background: var(--blue-50);
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--blue-500);
+      user-select: text;
+    }
+
+    .keyword-meta {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .keyword-type {
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      user-select: none;
+      font-size: 0.75rem;
+    }
+
+    .html { background: var(--warning-color); color: white; }
+    .css { background: var(--primary-color); color: white; }
+    .javascript { background: var(--success-color); color: white; }
+
+    .difficulty-badge {
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      user-select: none;
+    }
+
+    .difficulty-beginner { background: var(--success-color); color: white; }
+    .difficulty-intermediate { background: var(--warning-color); color: white; }
+    .difficulty-advanced { background: var(--danger-color); color: white; }
+
+    /* Description inside cards */
+    .keyword-description {
+      color: var(--gray-600);
+      line-height: 1.5;
+      margin-bottom: 12px;
+      user-select: text;
+      white-space: pre-wrap;
+      font-size: 0.95rem;
+    }
+
+    /* Example code box */
+    .keyword-example {
+      background: var(--gray-200);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: auto;
+      position: relative;
+      overflow-x: auto;
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+      font-size: 0.87rem;
+      white-space: pre-wrap;
+      user-select: text;
+    }
+
+    .example-label {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 0.68rem;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: var(--white);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--gray-200);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Copy button */
+    .copy-button {
+      position: absolute;
+      top: 8px;
+      left: 12px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 6px 8px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      opacity: 0;
+      transition: var(--transition);
+      user-select: none;
+      z-index: 2;
+    }
+
+    .keyword-example:hover .copy-button {
+      opacity: 1;
+    }
+
+    .copy-button:hover {
+      background: var(--secondary-color);
+    }
+
+    /* Tags below example */
+    .keyword-tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+      user-select: none;
+    }
+
+    .tag {
+      padding: 4px 10px;
+      background: var(--gray-100);
+      color: var(--gray-600);
+      font-size: 0.72rem;
+      border-radius: 999px;
+      border: 1px solid var(--gray-200);
+    }
+
+    /* No results message */
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--gray-500);
+      background: var(--gray-50);
+      border-radius: var(--border-radius);
+      border: 2px dashed var(--gray-300);
+      user-select: none;
+    }
+
+    .no-results-icon {
+      font-size: 3.6rem;
+      margin-bottom: 12px;
+      opacity: 0.6;
+    }
+
+    /* Floating action button */
+    .floating-action-button {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 56px;
+      height: 56px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: var(--shadow-xl);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      z-index: 1000;
+    }
+
+    .floating-action-button:hover {
+      transform: scale(1.06);
+      box-shadow: 0 22px 48px -14px rgba(59,130,246,0.45);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1100px) {
+      .keywords-grid { grid-template-columns: repeat(2, 1fr); }
+      .keywords-grid.compact-view { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .keywords-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+      .controls-section { flex-direction: column; align-items: stretch; }
+      .filter-tabs { justify-content: center; gap: 8px; }
+      .filter-tab { padding: 10px 14px; font-size: 0.95rem; }
+      .hamburger { display: block; }
+      .keywords-grid.compact-view { grid-template-columns: 1fr !important; }
+    }
+
+    @media (max-width: 480px) {
+      header h1 { font-size: 1.6rem; }
+      header .subtitle { font-size: 0.9rem; }
+      .keyword-card { padding: 16px; }
+      .keyword-name { font-size: 1.05rem; }
+      .copy-button { top: 6px; left: 8px; padding: 5px 6px; font-size: 0.7rem; }
+      .floating-action-button { bottom: 16px; right: 16px; width: 48px; height: 48px; font-size: 1rem; }
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: var(--gray-100); border-radius: 6px; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(135deg,var(--primary-color),var(--secondary-color)); border-radius: 6px; }
+    ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg,var(--secondary-color),var(--accent-color)); }
+
+    /* Fade in animation */
+    .fade-in { animation: fadeIn 0.6s ease-out both; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Toast */
+    .toast-container { position: fixed; top: 20px; right: 20px; z-index: 2000; }
+    .toast { background: var(--success-color); color: white; padding: 10px 14px; border-radius: 8px; margin-bottom: 8px; box-shadow: var(--shadow-lg); transform: translateX(120%); transition: transform 0.32s ease; }
+    .toast.show { transform: translateX(0); }
+    .toast.error { background: var(--danger-color); }
+
+    /* Demo area styling for live demos */
+    .demos { margin-top: 40px; display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .demo-card { background: var(--white); border-radius: 12px; padding: 16px; box-shadow: var(--shadow-sm); border: 1px solid var(--gray-200); }
+    .demo-card h4 { margin-bottom: 8px; color: var(--primary-color); }
+    .demo-video, .demo-canvas { width: 100%; border-radius: 8px; display: block; }
+    .demo-controls { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+    .btn { padding:8px 12px; border-radius:8px; border:none; cursor:pointer; background:var(--primary-color); color:white; }
+    .btn.secondary { background:var(--secondary-color); }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Web Development Reference</h1>
+      <p class="subtitle">Complete guide to HTML, CSS & JavaScript keywords with examples — Day 6 Lab</p>
+
+      <nav class="navbar" aria-label="Main navigation">
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">☰</button>
+        <ul class="nav-links" id="navLinks" role="menubar">
+          <li role="none"><a role="menuitem" href="#keywords">Keywords</a></li>
+          <li role="none"><a role="menuitem" href="#demos">Demos</a></li>
+          <li role="none"><a role="menuitem" href="#resources">Resources</a></li>
+          <li role="none"><a role="menuitem" href="#about">About</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="search-container" role="search" aria-label="Search keywords">
+      <input type="text" id="searchInput" placeholder="Search keywords, descriptions, tags, or examples..." aria-label="Search keywords" />
+      <span class="search-icon" aria-hidden="true">🔍</span>
+    </div>
+
+    <div class="controls-section" role="region" aria-label="Controls">
+      <div class="filter-tabs" role="tablist" aria-label="Filter keywords by type">
+        <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true" tabindex="0">All</button>
+        <button class="filter-tab" data-filter="html" role="tab" aria-selected="false" tabindex="-1">HTML</button>
+        <button class="filter-tab" data-filter="css" role="tab" aria-selected="false" tabindex="-1">CSS</button>
+        <button class="filter-tab" data-filter="javascript" role="tab" aria-selected="false" tabindex="-1">JavaScript</button>
+      </div>
+
+      <div class="view-controls" role="group" aria-label="Change view mode">
+        <button class="view-toggle active" data-view="grid" title="Grid View" aria-pressed="true">📊</button>
+        <button class="view-toggle" data-view="list" title="List View" aria-pressed="false">📋</button>
+        <button class="view-toggle" data-view="compact" title="Compact View" aria-pressed="false">📱</button>
+        <select class="sort-select" id="sortSelect" aria-label="Sort keywords">
+          <option value="name">Sort by Name</option>
+          <option value="type">Sort by Type</option>
+          <option value="difficulty">Sort by Difficulty</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="stats" aria-live="polite" aria-atomic="true">
+      <div class="stat-item"><span class="stat-number" id="totalCount">0</span><span class="stat-label">Total Keywords</span></div>
+      <div class="stat-item"><span class="stat-number" id="htmlCount">0</span><span class="stat-label">HTML</span></div>
+      <div class="stat-item"><span class="stat-number" id="cssCount">0</span><span class="stat-label">CSS</span></div>
+      <div class="stat-item"><span class="stat-number" id="jsCount">0</span><span class="stat-label">JavaScript</span></div>
+    </div>
+
+    <section id="keywords" aria-label="Keywords section">
+      <div class="keywords-grid" id="keywordsGrid" role="list" aria-label="Web development keywords"></div>
+      <div class="no-results" id="noResults" style="display:none;" role="alert" aria-live="assertive">
+        <div class="no-results-icon">🔍</div>
+        <h3>No keywords found</h3>
+        <p>Try adjusting your search terms or filters</p>
+      </div>
+    </section>
+
+    <section id="demos" class="demos" aria-label="Live demos">
+      <div class="demo-card" id="video-demo">
+        <h4>&lt;video&gt; demo</h4>
+        <video class="demo-video" controls muted preload="metadata" width="100%" src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"></video>
+        <div style="margin-top:8px;color:var(--gray-600);font-size:0.9rem;">Video element supports controls, autoplay (if allowed), muted, and responsive sizing.</div>
+      </div>
+
+      <div class="demo-card" id="details-demo">
+        <h4>&lt;details&gt; / &lt;summary&gt; demo</h4>
+        <details>
+          <summary style="cursor:pointer;padding:8px;border-radius:8px;background:var(--gray-50);border:1px solid var(--gray-200);">Click to expand details</summary>
+          <div style="padding:12px 8px 0 8px;color:var(--gray-700);">Details content shows progressive disclosure and can be styled. It's useful for FAQ and hidden content.</div>
+        </details>
+      </div>
+
+      <div class="demo-card" id="canvas-demo">
+        <h4>&lt;canvas&gt; demo</h4>
+        <canvas id="demoCanvas" class="demo-canvas" width="400" height="200" style="background:linear-gradient(90deg,#fff,#f3f4f6);border-radius:8px;"></canvas>
+        <div class="demo-controls">
+          <button class="btn" id="canvasDraw">Draw Random Shapes</button>
+          <button class="btn secondary" id="canvasClear">Clear</button>
+        </div>
+      </div>
+
+      <div class="demo-card" id="dialog-demo">
+        <h4>&lt;dialog&gt; demo</h4>
+        <button class="btn" id="openDialog">Open Dialog</button>
+        <dialog id="sampleDialog" style="padding:18px;border-radius:10px;border:1px solid var(--gray-200);">
+          <h3 style="margin-bottom:8px;color:var(--primary-color);">Sample Dialog</h3>
+          <p style="color:var(--gray-700);">This is a demo dialog element (modal-like). Press Escape to close or click the close button.</p>
+          <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end;">
+            <button class="btn secondary" id="closeDialog">Close</button>
+          </div>
+        </dialog>
+      </div>
+    </section>
+
+    <section id="resources" style="margin-top:30px;">
+      <h3 style="color:var(--primary-color);margin-bottom:10px;">Resources</h3>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a class="btn" href="https://developer.mozilla.org/" target="_blank" rel="noopener">MDN Web Docs</a>
+        <a class="btn secondary" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener">MDN JavaScript</a>
+        <a class="btn" href="https://css-tricks.com/" target="_blank" rel="noopener">CSS-Tricks</a>
+      </div>
+    </section>
+
+    <section id="about" style="margin-top:30px;padding:20px;background:var(--white);border-radius:12px;border:1px solid var(--gray-200);box-shadow:var(--shadow-sm);">
+      <h3 style="color:var(--primary-color);margin-bottom:8px;">About this project</h3>
+      <p style="color:var(--gray-700);">This page is a single-file reference for HTML, CSS and JavaScript keywords — built as a professional evaluation artifact for ThinkSchool Day 6. Contains searchable, filterable keyword cards, copyable examples, live demos and accessible controls.</p>
+    </section>
+  </div>
+
+  <div class="toast-container" id="toastContainer" aria-hidden="true"></div>
+
+  <button class="floating-action-button" id="scrollToTop" title="Scroll to top" aria-label="Scroll to top">↑</button>
+
+  <script>
+    const keywords = [
+      { name: "<!DOCTYPE html>", type: "html", difficulty: "beginner", description: "Declares HTML5 document type. Must be first line.", example: "<!DOCTYPE html>\n<html lang=\"en\">...</html>", tags: ["document","declaration"] },
+      { name: "<html>", type: "html", difficulty: "beginner", description: "Root element wrapping the entire document.", example: "<html lang=\"en\">...</html>", tags: ["root","structure"] },
+      { name: "<head>", type: "html", difficulty: "beginner", description: "Contains metadata, styles, and scripts.", example: "<head><meta charset=\"utf-8\"><title>Title</title></head>", tags: ["metadata","seo"] },
+      { name: "<body>", type: "html", difficulty: "beginner", description: "Contains visible content of the page.", example: "<body><h1>Welcome</h1></body>", tags: ["content","structure"] },
+      { name: "<div>", type: "html", difficulty: "beginner", description: "Generic block container with no semantic meaning.", example: "<div class=\"box\">Content</div>", tags: ["container","layout"] },
+      { name: "<span>", type: "html", difficulty: "beginner", description: "Generic inline container.", example: "<span class=\"highlight\">text</span>", tags: ["inline","styling"] },
+      { name: "<header>", type: "html", difficulty: "beginner", description: "Introductory content for a page or section.", example: "<header><h1>Site</h1></header>", tags: ["semantic","layout"] },
+      { name: "<footer>", type: "html", difficulty: "beginner", description: "Footer for a page or section.", example: "<footer>&copy; 2025</footer>", tags: ["semantic","layout"] },
+      { name: "<nav>", type: "html", difficulty: "beginner", description: "Container for navigation links.", example: "<nav><a href=\"#\">Home</a></nav>", tags: ["links","navigation"] },
+      { name: "<section>", type: "html", difficulty: "intermediate", description: "Thematic grouping of content.", example: "<section><h2>Title</h2></section>", tags: ["semantic","structure"] },
+      { name: "<article>", type: "html", difficulty: "intermediate", description: "Independent piece of content, like a blog post.", example: "<article><h2>Post</h2></article>", tags: ["semantic","content"] },
+      { name: "<aside>", type: "html", difficulty: "intermediate", description: "Sidebar or tangential content.", example: "<aside>Related links</aside>", tags: ["semantic","sidebar"] },
+      { name: "<figure>", type: "html", difficulty: "intermediate", description: "Container for images, diagrams, code snippets.", example: "<figure><img src=\"a.jpg\"><figcaption>Caption</figcaption></figure>", tags: ["media","semantics"] },
+      { name: "<figcaption>", type: "html", difficulty: "intermediate", description: "Caption for a figure element.", example: "<figcaption>Image caption</figcaption>", tags: ["caption","accessibility"] },
+      { name: "<img>", type: "html", difficulty: "beginner", description: "Embeds an image. Use alt attribute for accessibility.", example: "<img src=\"photo.jpg\" alt=\"description\">", tags: ["media","accessibility"] },
+      { name: "<picture>", type: "html", difficulty: "intermediate", description: "Responsive images with multiple sources and art direction.", example: "<picture><source srcset=\"a.webp\" type=\"image/webp\"><img src=\"a.jpg\"></picture>", tags: ["responsive","images"] },
+      { name: "<video>", type: "html", difficulty: "intermediate", description: "Embeds video content.", example: "<video controls src=\"video.mp4\"></video>", tags: ["media","multimedia"] },
+      { name: "<audio>", type: "html", difficulty: "intermediate", description: "Embeds audio content.", example: "<audio controls src=\"audio.mp3\"></audio>", tags: ["media","multimedia"] },
+      { name: "<iframe>", type: "html", difficulty: "intermediate", description: "Embeds another HTML page within the page.", example: "<iframe src=\"https://example.com\"></iframe>", tags: ["embed","external"] },
+      { name: "<form>", type: "html", difficulty: "beginner", description: "Collects user input.", example: "<form action=\"/submit\"><input name=\"q\"></form>", tags: ["forms","input"] },
+      { name: "<input>", type: "html", difficulty: "beginner", description: "Form control for user input.", example: "<input type=\"text\" name=\"name\">", tags: ["forms","fields"] },
+      { name: "<label>", type: "html", difficulty: "beginner", description: "Associates text with a form control.", example: "<label for=\"email\">Email</label>", tags: ["accessibility","forms"] },
+      { name: "<select>", type: "html", difficulty: "beginner", description: "Dropdown list.", example: "<select><option>One</option></select>", tags: ["forms","input"] },
+      { name: "<textarea>", type: "html", difficulty: "beginner", description: "Multi-line text input.", example: "<textarea rows=\"4\"></textarea>", tags: ["forms","input"] },
+      { name: "<button>", type: "html", difficulty: "beginner", description: "Clickable button used in forms and UI.", example: "<button type=\"button\">Click</button>", tags: ["interaction","forms"] },
+      { name: "<fieldset>", type: "html", difficulty: "intermediate", description: "Groups related form controls.", example: "<fieldset><legend>Info</legend></fieldset>", tags: ["forms","accessibility"] },
+      { name: "<legend>", type: "html", difficulty: "intermediate", description: "Caption for a fieldset.", example: "<legend>Details</legend>", tags: ["forms","accessibility"] },
+      { name: "<details>", type: "html", difficulty: "intermediate", description: "Expandable details block.", example: "<details><summary>More</summary><p>Details content</p></details>", tags: ["interaction","accessibility"] },
+      { name: "<summary>", type: "html", difficulty: "intermediate", description: "Summary/title for details.", example: "<summary>Summary</summary>", tags: ["interaction","accessibility"] },
+      { name: "<mark>", type: "html", difficulty: "beginner", description: "Highlights text.", example: "<p>Use <mark>highlight</mark> to show emphasis.</p>", tags: ["text","semantics"] },
+      { name: "<abbr>", type: "html", difficulty: "beginner", description: "Represents an abbreviation.", example: "<abbr title=\"World Health Organization\">WHO</abbr>", tags: ["accessibility","text"] },
+      { name: "<time>", type: "html", difficulty: "beginner", description: "Represents a date/time.", example: "<time datetime=\"2025-09-06\">Sep 6 2025</time>", tags: ["time","semantics"] },
+      { name: "<progress>", type: "html", difficulty: "intermediate", description: "Represents task progress.", example: "<progress value=\"30\" max=\"100\"></progress>", tags: ["ui","meter"] },
+      { name: "<meter>", type: "html", difficulty: "intermediate", description: "Represents scalar measurement within a known range.", example: "<meter value=\"0.6\">60%</meter>", tags: ["ui","meter"] },
+      { name: "<canvas>", type: "html", difficulty: "advanced", description: "Drawing surface for 2D/3D graphics.", example: "<canvas id=\"c\"></canvas>", tags: ["graphics","interactive"] },
+      { name: "<template>", type: "html", difficulty: "advanced", description: "Holds markup for client-side cloning.", example: "<template><p>Clone me</p></template>", tags: ["templates","dom"] },
+      { name: "<slot>", type: "html", difficulty: "advanced", description: "Placeholder for light DOM content.", example: "<slot></slot>", tags: ["templates","dom"] },
+      { name: "<dialog>", type: "html", difficulty: "intermediate", description: "Represents a dialog box or window.", example: "<dialog open>Dialog content</dialog>", tags: ["ui","modal"] },
+      { name: "selector", type: "css", difficulty: "beginner", description: "Targets HTML elements to apply styles.", example: "h1 { color: blue; }", tags: ["selectors","basics"] },
+      { name: "element", type: "css", difficulty: "beginner", description: "Selects elements by tag name.", example: "p { line-height: 1.5; }", tags: ["selectors","basics"] },
+      { name: "universal", type: "css", difficulty: "beginner", description: "Selects all elements.", example: "* { margin: 0; padding: 0; }", tags: ["selectors","basics"] },
+      { name: "selector", type: "css", difficulty: "beginner", description: "Targets HTML elements to apply styles.", example: "h1 { color: blue; }", tags: ["selectors","basics"] },
+      { name: "class", type: "css", difficulty: "beginner", description: "Selects elements with a class.", example: ".btn { padding:8px }", tags: ["selectors","basics"] },
+      { name: "id", type: "css", difficulty: "beginner", description: "Selects elements by ID.", example: "#nav { background:#fff }", tags: ["selectors","basics"] },
+      { name: "box-model", type: "css", difficulty: "beginner", description: "Content, padding, border, margin model.", example: ".card { padding: 10px; border:1px solid #ddd }", tags: ["layout","basics"] },
+      { name: "margin", type: "css", difficulty: "beginner", description: "Creates space outside an element's border.", example: ".spaced { margin: 20px }", tags: ["spacing","layout"] },
+      { name: "padding", type: "css", difficulty: "beginner", description: "Creates space inside an element's border.", example: ".padded { padding: 10px }", tags: ["spacing","layout"] },
+      { name: "border", type: "css", difficulty: "beginner", description: "Creates a visible border around an element.", example: ".bordered { border: 1px solid #000 }", tags: ["visuals","layout"] },
+      { name: "display", type: "css", difficulty: "beginner", description: "Controls element display (block, inline, flex, grid).", example: ".row { display:flex }", tags: ["layout","basics"] },
+      { name: "flexbox", type: "css", difficulty: "intermediate", description: "Flexible box layout for 1D alignment.", example: ".flex { display:flex; gap:8px }", tags: ["layout","responsive"] },
+      { name: "justify-content", type: "css", difficulty: "intermediate", description: "Aligns flex items on main axis.", example: ".flex { justify-content: center }", tags: ["flexbox","alignment"] },
+      { name: "align-items", type: "css", difficulty: "intermediate", description: "Aligns flex items on cross axis.", example: ".flex { align-items: center }", tags: ["flexbox","alignment"] },
+      { name: "flex-wrap", type: "css", difficulty: "intermediate", description: "Controls whether flex items wrap.", example: ".flex { flex-wrap: wrap }", tags: ["flexbox","responsive"] },
+      { name: "grid", type: "css", difficulty: "intermediate", description: "Grid layout for 2D placement.", example: ".grid { display:grid; grid-template-columns:1fr 1fr }", tags: ["layout","responsive"] },
+      { name: "grid-template-columns", type: "css", difficulty: "intermediate", description: "Defines the column sizes of a grid.", example: ".grid{grid-template-columns:1fr 2fr}", tags: ["grid","layout"] },
+      { name: "gap", type: "css", difficulty: "beginner", description: "Sets gap between grid/flex items.", example: ".grid{gap:12px}", tags: ["grid","flexbox"] },
+      { name: "position", type: "css", difficulty: "beginner", description: "Controls element positioning (static, relative, absolute, fixed, sticky).", example: ".abs{position:absolute;top:0}", tags: ["positioning","layout"] },
+      { name: "sticky", type: "css", difficulty: "intermediate", description: "Element sticks within container while scrolling.", example: ".sticky{position:sticky;top:0}", tags: ["positioning","ui"] },
+      { name: "z-index", type: "css", difficulty: "intermediate", description: "Controls stacking order.", example: ".modal { z-index: 1000 }", tags: ["stacking","layout"] },
+      { name: "transform", type: "css", difficulty: "intermediate", description: "Rotate, scale, translate, skew elements.", example: ".tilt{transform:rotate(6deg)}", tags: ["effects","animation"] },
+      { name: "transition", type: "css", difficulty: "beginner", description: "Smoothly animate property changes.", example: ".btn{transition:all .2s}", tags: ["animation","effects"] },
+      { name: "animation", type: "css", difficulty: "intermediate", description: "Keyframe-based animations.", example: "@keyframes bounce{...}", tags: ["animation","effects"] },
+      { name: "opacity", type: "css", difficulty: "beginner", description: "Sets transparency level.", example: ".fade{opacity:.5}", tags: ["visuals","effects"] },
+      { name: "clip-path", type: "css", difficulty: "advanced", description: "Clip an element to a shape.", example: "clip-path:circle(50%);", tags: ["effects","creative"] },
+      { name: "backdrop-filter", type: "css", difficulty: "advanced", description: "Apply filter to area behind an element.", example: "backdrop-filter: blur(6px);", tags: ["visuals","effects"] },
+      { name: "object-fit", type: "css", difficulty: "intermediate", description: "How replaced elements (img, video) fit", example: "img{object-fit:cover}", tags: ["media","responsive"] },
+      { name: "object-position", type: "css", difficulty: "intermediate", description: "Position of replaced elements (img, video).", example: "img{object-position:center}", tags: ["media","responsive"] },
+      { name: "clip-path", type: "css", difficulty: "advanced", description: "Clip an element to a shape.", example: "clip-path:circle(50%);", tags: ["effects","creative"] },
+      { name: "mask", type: "css", difficulty: "advanced", description: "Defines an area where the element is visible.", example: "mask:circle(50%);", tags: ["effects","creative"] },
+      { name: "visibility", type: "css", difficulty: "beginner", description: "Controls visibility (visible, hidden, collapse).", example: ".hidden{visibility:hidden}", tags: ["layout","visibility"] },
+      { name: "text-align", type: "css", difficulty: "beginner", description: "Aligns text (left, right, center, justify).", example: ".center{text-align:center}", tags: ["typography","layout"] },
+      { name: "font-size", type: "css", difficulty: "beginner", description: "Sets text size.", example: ".large{font-size:1.5rem}", tags: ["typography","text"] },
+      { name: "font-weight", type: "css", difficulty: "beginner", description: "Sets text boldness.", example: ".bold{font-weight:bold}", tags: ["typography","text"] },
+      { name: "line-height", type: "css", difficulty: "beginner", description: "Sets space between lines of text.", example: ".text{line-height:1.6}", tags: ["typography","text"] },
+      { name: "color", type: "css", difficulty: "beginner", description: "Sets text color.", example: ".text{color:#333}", tags: ["typography","visuals"] },
+      { name: "background-color", type: "css", difficulty: "beginner", description: "Sets background color.", example: ".bg{background-color:#f0f0f0}", tags: ["visuals","background"] },
+      { name: "background-image", type: "css", difficulty: "intermediate", description: "Sets background image.", example: ".bg{background-image:url('img.jpg')}", tags: ["visuals","background"] },
+      { name: "background-size", type: "css", difficulty: "intermediate", description: "Controls background image size (cover, contain).", example: ".bg{background-size:cover}", tags: ["visuals","background"] },
+      { name: "background-position", type: "css", difficulty: "intermediate", description: "Sets starting position of background image.", example: ".bg{background-position:center}", tags: ["visuals","background"] },
+      { name: "border-radius", type: "css", difficulty: "beginner", description: "Rounds element corners.", example: ".rounded{border-radius:8px}", tags: ["visuals","effects"] },
+      { name: "box-sizing", type: "css", difficulty: "beginner", description: "Includes padding/border in element's total width/height.", example: "*{box-sizing:border-box}", tags: ["layout","boxmodel"] },
+      { name: "filter", type: "css", difficulty: "intermediate", description: "Apply blur/brightness/contrast.", example: "img{filter:grayscale(1)}", tags: ["visuals","effects"] },{ name: "backdrop-filter", type: "css", difficulty: "advanced", description: "Apply filter to area behind an element.", example: "backdrop-filter: blur(6px);", tags: ["visuals","effects"] },
+      { name: "box-shadow", type: "css", difficulty: "intermediate", description: "Adds shadow to elements.", example: ".card{box-shadow:0 4px 6px rgba(0,0,0,0.1)}", tags: ["visuals","effects"] },
+      { name: "text-overflow", type: "css", difficulty: "beginner", description: "Handles overflowed text (clip, ellipsis).", example: ".text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}", tags: ["typography","layout"] },
+      { name: "white-space", type: "css", difficulty: "beginner", description: "Controls how whitespace is handled.", example: ".pre{white-space:pre}", tags: ["typography","layout"] },
+      { name: "overflow", type: "css", difficulty: "beginner", description: "Control content overflow (visible, hidden, scroll, auto).", example: ".box{overflow:auto}", tags: ["layout","scroll"] },
+      { name: "overflow-y", type: "css", difficulty: "beginner", description: "Control vertical overflow.", example: ".scroll{overflow-y:auto}", tags: ["layout","scroll"] },
+      { name: "overflow-x", type: "css", difficulty: "beginner", description: "Control horizontal overflow.", example: ".scroll{overflow-x:auto}", tags: ["layout","scroll"] },
+      { name: "cursor", type: "css", difficulty: "beginner", description: "Controls mouse cursor style.", example: ".clickable{cursor:pointer}", tags: ["ux","interaction"] },
+      { name: "text-shadow", type: "css", difficulty: "intermediate", description: "Adds shadow to text.", example: "h1{text-shadow:1px 1px 2px #000}", tags: ["visuals","effects"] },
+      { name: "word-wrap", type: "css", difficulty: "beginner", description: "Wrap long words.", example: ".text{word-wrap:break-word}", tags: ["typography","layout"] },
+      { name: "filter", type: "css", difficulty: "intermediate", description: "Apply blur/brightness/contrast.", example: "img{filter:grayscale(1)}", tags: ["visuals","effects"] },
+      { name: "perspective", type: "css", difficulty: "advanced", description: "Define 3D perspective.", example: ".scene{perspective:800px}", tags: ["3d","effects"] },
+      { name: "querySelector", type: "javascript", difficulty: "beginner", description: "Select first matching element.", example: "const el=document.querySelector('.btn')", tags: ["dom","selector"] },
+      { name: "querySelectorAll", type: "javascript", difficulty: "beginner", description: "Select all matching elements.", example: "const items=document.querySelectorAll('.item')", tags: ["dom","selector"] },
+      { name: "getElementById", type: "javascript", difficulty: "beginner", description: "Select element by ID.", example: "const el=document.getElementById('id')", tags: ["dom","selector"] },
+      { name: "addEventListener", type: "javascript", difficulty: "beginner", description: "Attach event listeners.", example: "btn.addEventListener('click', ()=>{})", tags: ["events","dom"] },
+      { name: "classList.toggle", type: "javascript", difficulty: "beginner", description: "Toggle CSS classes on elements.", example: "el.classList.toggle('active')", tags: ["dom","classes"] },
+      { name: "innerText / innerHTML", type: "javascript", difficulty: "beginner", description: "Update element text or HTML.", example: "el.innerText='Hello'", tags: ["dom","manipulation"] },
+      { name: "localStorage", type: "javascript", difficulty: "intermediate", description: "Persist key/value pairs in browser.", example: "localStorage.setItem('k','v')", tags: ["storage","webapi"] },
+      { name: "sessionStorage", type: "javascript", difficulty: "intermediate", description: "Session-scoped storage.", example: "sessionStorage.setItem('s','v')", tags: ["storage","webapi"] },
+      { name: "fetch()", type: "javascript", difficulty: "intermediate", description: "Make HTTP requests.", example: "fetch('/api').then(r=>r.json())", tags: ["http","api"] },
+      { name: "Promise", type: "javascript", difficulty: "intermediate", description: " represents an async operation.", example: "new Promise((res,rej)=>{})", tags: ["async","es6"] },
+      { name: "async/await", type: "javascript", difficulty: "advanced", description: "Syntactic sugar for Promises.", example: "async function f(){ const r=await fetch('/'); }", tags: ["async","es8"] },
+      { name: "setTimeout", type: "javascript", difficulty: "beginner", description: "Run code after delay.", example: "setTimeout(()=>{},1000)", tags: ["timers","async"] },
+      { name: "setInterval", type: "javascript", difficulty: "beginner", description: "Run code repeatedly.", example: "setInterval(()=>{},1000)", tags: ["timers","async"] },
+      { name: "clearInterval", type: "javascript", difficulty: "beginner", description: "Stop repeating timer.", example: "clearInterval(id)", tags: ["timers"] },
+      { name: "map()", type: "javascript", difficulty: "intermediate", description: "Transform arrays.", example: "[1,2].map(x=>x*2)", tags: ["array","functional"] },
+      { name: "filter()", type: "javascript", difficulty: "intermediate", description: "Filter arrays.", example: "[1,2].filter(x=>x>1)", tags: ["array","functional"] },
+      { name: "reduce()", type: "javascript", difficulty: "advanced", description: "Reduce arrays to a single value.", example: "[1,2].reduce((a,b)=>a+b,0)", tags: ["array","functional"] },
+      { name: "forEach()", type: "javascript", difficulty: "intermediate", description: "Loop array and execute function.", example: "[1,2].forEach(x=>console.log(x))", tags: ["array","loop"] },
+      { name: "Array.from()", type: "javascript", difficulty: "intermediate", description: "Create array from iterable.", example: "Array.from(document.querySelectorAll('div'))", tags: ["array","dom"] },
+      { name: "JSON.parse()", type: "javascript", difficulty: "beginner", description: "Parse JSON string to object.", example: "JSON.parse('{\"a\":1}')", tags: ["json","data"] },
+      { name: "JSON.stringify()", type: "javascript", difficulty: "beginner", description: "Convert object to JSON string.", example: "JSON.stringify({a:1})", tags: ["json","data"] },
+      { name: "try/catch", type: "javascript", difficulty: "intermediate", description: "Exception handling block.", example: "try{ } catch(e){ }", tags: ["errors","control"] },
+      { name: "debugger", type: "javascript", difficulty: "intermediate", description: "Pause execution for debugging.", example: "debugger; // open devtools", tags: ["debugging"] },
+      { name: "console.log()", type: "javascript", difficulty: "beginner", description: "Log output to console.", example: "console.log('Hello')", tags: ["debugging"] },
+      { name: "template literals", type: "javascript", difficulty: "beginner", description: "Backtick strings with interpolation.", example: "const s=`Hello ${name}`", tags: ["strings","es6"] },
+      { name: "spread operator", type: "javascript", difficulty: "intermediate", description: "Expand iterables inside arrays/objects.", example: "const a=[...b]", tags: ["syntax","es6"] },
+      { name: "destructuring", type: "javascript", difficulty: "intermediate", description: "Extract properties from objects/arrays.", example: "const {x,y}=obj", tags: ["syntax","es6"] },
+      { name: "class", type: "javascript", difficulty: "intermediate", description: "ES6 class syntax for objects.", example: "class X{constructor(){}}", tags: ["oop","es6"] },
+      { name: "new Date()", type: "javascript", difficulty: "beginner", description: "Get current date/time.", example: "const now=new Date()", tags: ["date","time"] },
+      { name: "Math.random()", type: "javascript", difficulty: "beginner", description: "Generate pseudo-random number between 0-1.", example: "Math.random()", tags: ["math","random"] },
+      { name: "switch-case", type: "javascript", difficulty: "beginner", description: "Multi-branch conditional.", example: "switch(x){case 1:break}", tags: ["control"] },
+      { name: "arrow function", type: "javascript", difficulty: "beginner", description: "Shorter function syntax.", example: "const f=(x)=>x*2", tags: ["functions","syntax"] },
+      { name: "promise.all", type: "javascript", difficulty: "advanced", description: "Wait for multiple promises.", example: "Promise.all([p1,p2]).then(...)", tags: ["async","promises"] },
+      { name: "event delegation", type: "javascript", difficulty: "advanced", description: "Handle events at a parent level.", example: "parent.addEventListener('click', e=>{ if(e.target.matches('.btn')){} })", tags: ["events","performance"] },
+      { name: "debounce", type: "javascript", difficulty: "advanced", description: "Limit function calls over time.", example: "const debounced=debounce(fn,300)", tags: ["performance","functions"] },
+      { name: "throttle", type: "javascript", difficulty: "advanced", description: "Ensure function called at most once in interval.", example: "const throttled=throttle(fn,300)", tags: ["performance","functions"] },
+      { name: "nullish coalescing", type: "javascript", difficulty: "intermediate", description: "Default value for null/undefined.", example: "const x=a ?? 'default'", tags: ["operators","es2020"] },
+      { name: "optional chaining", type: "javascript", difficulty: "intermediate", description: "Safely access nested properties.", example: "const x=obj?.prop?.subprop", tags: ["operators","es2020"] },
+      { name: "setAttribute", type: "javascript", difficulty: "beginner", description: "Set attribute on an element.", example: "el.setAttribute('data-id','123')", tags: ["dom","attributes"] },
+      { name: "getAttribute", type: "javascript", difficulty: "beginner", description: "Get attribute value from an element.", example: "const id=el.getAttribute('data-id')", tags: ["dom","attributes"] },
+      { name: "removeAttribute", type: "javascript", difficulty: "beginner", description: "Remove attribute from an element.", example: "el.removeAttribute('data-id')", tags: ["dom","attributes"] },
+      { name: "parentNode", type: "javascript", difficulty: "beginner", description: "Get parent node of an element.", example: "const parent=el.parentNode", tags: ["dom","traversal"] },
+      { name: "childNodes", type: "javascript", difficulty: "beginner", description: "Get child nodes of an element.", example: "const children=el.childNodes", tags: ["dom","traversal"] },
+      { name: "nextSibling", type: "javascript", difficulty: "beginner", description: "Get next sibling node.", example: "const next=el.nextSibling", tags: ["dom","traversal"] },
+      { name: "previousSibling", type: "javascript", difficulty: "beginner", description: "Get previous sibling node.", example: "const prev=el.previousSibling", tags: ["dom","traversal"] },
+      { name: "createElement", type: "javascript", difficulty: "beginner", description: "Create new HTML element.", example: "const div=document.createElement('div')", tags: ["dom","creation"] },
+      { name: "appendChild", type: "javascript", difficulty: "beginner", description: "Append child element to parent.", example: "parent.appendChild(child)", tags: ["dom","manipulation"] },
+      { name: "removeChild", type: "javascript", difficulty: "beginner", description: "Remove child element from parent.", example: "parent.removeChild(child)", tags: ["dom","manipulation"] }
+    ];
+
+    let filteredKeywords = [...keywords];
+    let currentFilter = 'all';
+    let currentView = 'grid';
+
+    function init() {
+      buildKeywordsGrid(); // initial render
+      updateStats();
+      attachEventListeners();
+      initDemos();
+    }
+
+    function updateStats() {
+      const total = filteredKeywords.length;
+      const htmlCount = filteredKeywords.filter(k => k.type === 'html').length;
+      const cssCount = filteredKeywords.filter(k => k.type === 'css').length;
+      const jsCount = filteredKeywords.filter(k => k.type === 'javascript').length;
+
+      document.getElementById('totalCount').textContent = total;
+      document.getElementById('htmlCount').textContent = htmlCount;
+      document.getElementById('cssCount').textContent = cssCount;
+      document.getElementById('jsCount').textContent = jsCount;
+    }
+
+    function buildKeywordsGrid() {
+      const container = document.getElementById('keywordsGrid');
+      container.innerHTML = '';
+      if (filteredKeywords.length === 0) {
+        document.getElementById('noResults').style.display = 'block';
+        container.style.display = 'none';
+        return;
+      } else {
+        document.getElementById('noResults').style.display = 'none';
+        container.style.display = 'grid';
+      }
+
+      filteredKeywords.forEach(keyword => {
+        const card = document.createElement('article');
+        card.className = 'keyword-card fade-in';
+        card.setAttribute('role', 'listitem');
+        const typeClass = keyword.type === 'html' ? 'html' : keyword.type === 'css' ? 'css' : 'javascript';
+        const difficultyClass = keyword.difficulty ? `difficulty-${keyword.difficulty}` : 'difficulty-beginner';
+        const tags = Array.isArray(keyword.tags) ? keyword.tags : [];
+        const exampleEscaped = escapeHTML(keyword.example || '');
+        const description = escapeHTML(keyword.description || '');
+
+        card.innerHTML = `
+          <div class="keyword-header">
+            <code class="keyword-name" tabindex="0">${escapeHTML(keyword.name)}</code>
+            <div class="keyword-meta">
+              <span class="keyword-type ${typeClass}">${escapeHTML(keyword.type || 'html')}</span>
+              <span class="difficulty-badge ${difficultyClass}">${escapeHTML(keyword.difficulty || 'beginner')}</span>
+            </div>
+          </div>
+          <p class="keyword-description">${description}</p>
+          <div class="keyword-example" aria-label="Example code for ${escapeHTML(keyword.name)}">
+            <span class="example-label">Example</span>
+            <button class="copy-button" aria-label="Copy example code for ${escapeHTML(keyword.name)}">Copy</button>
+            <code>${exampleEscaped || '<em>No example provided</em>'}</code>
+          </div>
+          <div class="keyword-tags" aria-label="Tags">
+            ${tags.map(t => `<span class="tag">${escapeHTML(t)}</span>`).join('')}
+          </div>
+        `;
+
+        // wire copy button
+        const copyBtn = card.querySelector('.copy-button');
+        copyBtn.addEventListener('click', () => {
+          const codeText = keyword.example || '';
+          copyToClipboard(codeText);
+          showToast('Copied example to clipboard.');
+        });
+
+        container.appendChild(card);
+      });
+
+      updateStats();
+    }
+
+    function escapeHTML(text) {
+      if (text === undefined || text === null) return '';
+      return String(text).replace(/[&<>"']/g, function (m) {
+        switch (m) {
+          case '&': return '&amp;';
+          case '<': return '&lt;';
+          case '>': return '&gt;';
+          case '"': return '&quot;';
+          case "'": return '&#39;';
+          default: return m;
+        }
+      });
+    }
+
+    function filterKeywords(searchTerm = '') {
+      const term = (searchTerm || '').toLowerCase().trim();
+      filteredKeywords = keywords.filter(k => {
+        const matchesFilter = currentFilter === 'all' || k.type === currentFilter;
+        if (!matchesFilter) return false;
+        if (!term) return true;
+        const hay = `${k.name} ${k.description || ''} ${k.example || ''} ${(k.tags || []).join(' ')}`.toLowerCase();
+        return hay.includes(term);
+      });
+      sortKeywords(); // preserve sorting when filter changes
+      buildKeywordsGrid();
+    }
+
+    function sortKeywords() {
+      const sortBy = document.getElementById('sortSelect').value;
+      const difficultyOrder = { beginner: 0, intermediate: 1, advanced: 2 };
+      filteredKeywords.sort((a, b) => {
+        const va = (a[sortBy] || '').toString();
+        const vb = (b[sortBy] || '').toString();
+        if (sortBy === 'difficulty') {
+          return (difficultyOrder[a.difficulty] || 0) - (difficultyOrder[b.difficulty] || 0) || (a.name || '').localeCompare(b.name || '');
+        } else if (sortBy === 'type') {
+          return (a.type || '').localeCompare(b.type || '') || (a.name || '').localeCompare(b.name || '');
+        } else {
+          return (a.name || '').localeCompare(b.name || '');
+        }
+      });
+    }
+
+    function copyToClipboard(text) {
+      try {
+        if (!navigator.clipboard) {
+          // legacy fallback
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+          return;
+        }
+        navigator.clipboard.writeText(text).catch(()=>{});
+      } catch (e) {
+        console.error('copy failed', e);
+      }
+    }
+
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type === 'error' ? 'error' : ''}`;
+      toast.textContent = message;
+      container.appendChild(toast);
+      setTimeout(()=> toast.classList.add('show'), 30);
+      setTimeout(()=> {
+        toast.classList.remove('show');
+        setTimeout(()=> toast.remove(), 400);
+      }, 2500);
+    }
+
+    function attachEventListeners() {
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('input', (e) => filterKeywords(e.target.value));
+
+      const filterTabs = document.querySelectorAll('.filter-tab');
+      filterTabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+          filterTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); t.tabIndex = -1; });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected','true');
+          tab.tabIndex = 0;
+          currentFilter = tab.dataset.filter;
+          filterKeywords(searchInput.value);
+        });
+      });
+
+      const viewToggles = document.querySelectorAll('.view-toggle');
+      viewToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+          viewToggles.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-pressed','false'); });
+          e.target.classList.add('active');
+          e.target.setAttribute('aria-pressed','true');
+          currentView = e.target.dataset.view;
+          const grid = document.getElementById('keywordsGrid');
+          if (currentView === 'grid') {
+            grid.className = 'keywords-grid';
+          } else if (currentView === 'list') {
+            grid.className = 'keywords-grid list-view';
+          } else {
+            grid.className = 'keywords-grid compact-view';
+          }
+        });
+      });
+
+      const sortSelect = document.getElementById('sortSelect');
+      sortSelect.addEventListener('change', () => {
+        sortKeywords();
+        buildKeywordsGrid();
+      });
+
+      // hamburger nav
+      const hamburgerBtn = document.getElementById('hamburger');
+      const navLinks = document.getElementById('navLinks');
+      hamburgerBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
+
+      // scroll to top
+      const stBtn = document.getElementById('scrollToTop');
+      stBtn.addEventListener('click', () => scrollToTop());
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) stBtn.style.opacity = 1;
+        else stBtn.style.opacity = 0.0;
+      });
+
+      // keyboard accessibility: pressing / focuses search
+      window.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== document.getElementById('searchInput')) {
+          e.preventDefault();
+          document.getElementById('searchInput').focus();
+        }
+      });
+
+      // demo dialog open/close
+      const openDialog = document.getElementById('openDialog');
+      const closeDialog = document.getElementById('closeDialog');
+      const sampleDialog = document.getElementById('sampleDialog');
+      if (openDialog && sampleDialog) {
+        openDialog.addEventListener('click', ()=> {
+          if (typeof sampleDialog.showModal === 'function') sampleDialog.showModal();
+          else alert('Dialog not supported in this browser - fallback');
+        });
+      }
+      if (closeDialog && sampleDialog) {
+        closeDialog.addEventListener('click', ()=> sampleDialog.close());
+      }
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function initDemos() {
+      // Canvas demo: draw random shapes
+      const canvas = document.getElementById('demoCanvas');
+      const ctx = canvas && canvas.getContext ? canvas.getContext('2d') : null;
+      const drawBtn = document.getElementById('canvasDraw');
+      const clearBtn = document.getElementById('canvasClear');
+
+      if (ctx) {
+        function randomColor() {
+          return `hsl(${Math.floor(Math.random()*360)},70%,60%)`;
+        }
+        function drawRandom() {
+          const w = canvas.width;
+          const h = canvas.height;
+          ctx.clearRect(0,0,w,h);
+          const shapes = Math.floor(Math.random() * 8) + 4;
+          for (let i=0;i<shapes;i++){
+            ctx.fillStyle = randomColor();
+            ctx.globalAlpha = 0.8;
+            const type = Math.floor(Math.random()*3);
+            if (type === 0) {
+              const x = Math.random()*w;
+              const y = Math.random()*h;
+              const r = 10 + Math.random()*60;
+              ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
+            } else if (type === 1) {
+              const x = Math.random()*w;
+              const y = Math.random()*h;
+              const rw = 20 + Math.random()*100;
+              const rh = 10 + Math.random()*60;
+              ctx.fillRect(x-rw/2,y-rh/2,rw,rh);
+            } else {
+              ctx.save();
+              ctx.translate(Math.random()*w, Math.random()*h);
+              ctx.rotate(Math.random()*Math.PI);
+              ctx.fillRect(-20, -10, 40+Math.random()*80, 20+Math.random()*80);
+              ctx.restore();
+            }
+          }
+        }
+        drawBtn.addEventListener('click', drawRandom);
+        clearBtn.addEventListener('click', ()=> ctx.clearRect(0,0,canvas.width, canvas.height));
+      }
+
+      // Toast welcome
+      setTimeout(()=> showToast('Welcome — Web Development Reference loaded!'), 600);
+    }
+
+    // Initialize app when DOM ready
+    document.addEventListener('DOMContentLoaded', init);
+
+    // Expose copy & scroll globally for inline onclick compatibility (if used)
+    window.copyToClipboard = copyToClipboard;
+    window.scrollToTop = scrollToTop;
+
+  </script>
+</body>
+</html>
